@@ -29,12 +29,23 @@ function isApprovalMessage(message) {
 }
 
 /**
- * Extract specific room from user message
+ * Extract specific room from user message (returns first match)
  * @param {string} message - User message
  * @returns {string|null} Room name or null
  */
 function extractRoomFromMessage(message) {
+  const rooms = extractRoomsFromMessage(message);
+  return rooms.length > 0 ? rooms[0] : null;
+}
+
+/**
+ * Extract ALL rooms mentioned in user message
+ * @param {string} message - User message
+ * @returns {string[]} Array of room names
+ */
+function extractRoomsFromMessage(message) {
   const lower = message.toLowerCase();
+  const foundRooms = [];
 
   // Check for Lily Hall room names
   const roomMap = {
@@ -46,12 +57,12 @@ function extractRoomFromMessage(message) {
   };
 
   for (const [key, value] of Object.entries(roomMap)) {
-    if (lower.includes(key)) {
-      return value;
+    if (lower.includes(key) && !foundRooms.includes(value)) {
+      foundRooms.push(value);
     }
   }
 
-  // Check for AI room names
+  // Check for AI room names (only if not already found by direct name)
   const aiRoomMap = {
     'standard': 'Bernard',
     'deluxe': 'LaRua',
@@ -61,12 +72,12 @@ function extractRoomFromMessage(message) {
   };
 
   for (const [key, value] of Object.entries(aiRoomMap)) {
-    if (lower.includes(key)) {
-      return value;
+    if (lower.includes(key) && !foundRooms.includes(value)) {
+      foundRooms.push(value);
     }
   }
 
-  return null;
+  return foundRooms;
 }
 
 /**
@@ -140,50 +151,67 @@ function findPendingActionFromHistory(conversationHistory) {
  * @returns {object} Filtered action proposal
  */
 function filterActionToRoom(actionProposal, roomName) {
-  if (!actionProposal || !roomName) return actionProposal;
+  return filterActionToRooms(actionProposal, [roomName]);
+}
 
-  // Handle applyMultiplePromotions - filter to specific room
+/**
+ * Filter action proposal to multiple rooms
+ * @param {object} actionProposal - The full action proposal
+ * @param {string[]} roomNames - Array of room names to filter to
+ * @returns {object} Filtered action proposal
+ */
+function filterActionToRooms(actionProposal, roomNames) {
+  if (!actionProposal || !roomNames || roomNames.length === 0) return actionProposal;
+
+  const lowerRoomNames = roomNames.map(r => r.toLowerCase());
+
+  // Handle applyMultiplePromotions - filter to specified rooms
   if (actionProposal.actionName === 'applyMultiplePromotions' && actionProposal.parameters?.promotions) {
     const filteredPromotions = actionProposal.parameters.promotions.filter(promo =>
-      promo.roomType?.toLowerCase() === roomName.toLowerCase()
+      lowerRoomNames.includes(promo.roomType?.toLowerCase())
     );
 
     if (filteredPromotions.length > 0) {
-      const promo = filteredPromotions[0];
+      // Build roomPricing array for all matching rooms
+      const roomPricing = filteredPromotions.map(promo => ({
+        roomType: promo.roomType,
+        currentPrice: promo.currentPrice,
+        newPrice: promo.newPrice
+      }));
+
+      const roomDescriptions = roomPricing.map(rp => `${rp.roomType}: $${rp.currentPrice} → $${rp.newPrice}`).join(', ');
+      const reason = filteredPromotions[0].reason || '10% promotion';
+
       return {
         actionName: 'applyTemporaryPricing',
         parameters: {
-          roomPricing: [{
-            roomType: promo.roomType,
-            currentPrice: promo.currentPrice,
-            newPrice: promo.newPrice
-          }],
-          startDate: promo.startDate || new Date().toISOString(),
-          endDate: promo.endDate || new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-          reason: promo.reason || '10% promotion'
+          roomPricing,
+          startDate: filteredPromotions[0].startDate || new Date().toISOString(),
+          endDate: filteredPromotions[0].endDate || new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+          reason
         },
-        description: `Apply ${promo.reason || '10% promotion'} to ${promo.roomType}: $${promo.currentPrice} → $${promo.newPrice}`,
+        description: `Apply ${reason} to ${roomPricing.length} room(s): ${roomDescriptions}`,
         confidence: 0.9,
-        reasoning: `Selected ${promo.roomType} from available promotions`
+        reasoning: `Selected ${roomNames.join(', ')} from available promotions`
       };
     }
   }
 
-  // Handle applyTemporaryPricing with multiple rooms - filter to specific room
+  // Handle applyTemporaryPricing with multiple rooms - filter to specified rooms
   if (actionProposal.actionName === 'applyTemporaryPricing' && actionProposal.parameters?.roomPricing) {
     const filteredPricing = actionProposal.parameters.roomPricing.filter(rp =>
-      rp.roomType?.toLowerCase() === roomName.toLowerCase()
+      lowerRoomNames.includes(rp.roomType?.toLowerCase())
     );
 
     if (filteredPricing.length > 0) {
-      const rp = filteredPricing[0];
+      const roomDescriptions = filteredPricing.map(rp => `${rp.roomType}: $${rp.currentPrice} → $${rp.newPrice}`).join(', ');
       return {
         ...actionProposal,
         parameters: {
           ...actionProposal.parameters,
-          roomPricing: [rp]
+          roomPricing: filteredPricing
         },
-        description: `Apply promotion to ${rp.roomType}: $${rp.currentPrice} → $${rp.newPrice}`
+        description: `Apply promotion to ${filteredPricing.length} room(s): ${roomDescriptions}`
       };
     }
   }
@@ -193,15 +221,15 @@ function filterActionToRoom(actionProposal, roomName) {
 
 /**
  * Check if message is requesting to apply a specific room offer
- * e.g., "apply Mariana", "apply Bernard offer", "apply the LaRua promotion"
+ * e.g., "apply Mariana", "apply Bernard and Santiago", "apply the LaRua promotion"
  * @param {string} message - User message
  * @returns {boolean}
  */
 function isSpecificRoomApplyRequest(message) {
   const lower = message.toLowerCase().trim();
   const hasApplyWord = lower.startsWith('apply') || lower.includes('apply the') || lower.includes('apply this');
-  const hasRoom = extractRoomFromMessage(message) !== null;
-  return hasApplyWord && hasRoom;
+  const hasRooms = extractRoomsFromMessage(message).length > 0;
+  return hasApplyWord && hasRooms;
 }
 
 /**
@@ -224,21 +252,25 @@ function isSimpleConfirmation(message) {
  * @returns {object} Flow result
  */
 function processApprovalFlow(message, sessionId, conversationHistory = []) {
-  const specificRoom = extractRoomFromMessage(message);
+  // Extract ALL rooms mentioned (not just first one)
+  const specificRooms = extractRoomsFromMessage(message);
+  const hasRooms = specificRooms.length > 0;
 
-  // Case 1: User says "apply [room]" - show confirmation for that specific room
-  if (isSpecificRoomApplyRequest(message) && specificRoom) {
+  // Case 1: User says "apply [room(s)]" - show confirmation for those specific rooms
+  if (isSpecificRoomApplyRequest(message) && hasRooms) {
     let pendingAction = getPendingAction(sessionId);
     if (!pendingAction) {
       pendingAction = findPendingActionFromHistory(conversationHistory);
     }
 
     if (pendingAction) {
-      // Filter to the specific room and ask for confirmation
-      const filteredAction = filterActionToRoom(pendingAction, specificRoom);
+      // Filter to ALL specified rooms (not just first one)
+      const filteredAction = filterActionToRooms(pendingAction, specificRooms);
 
       // Store the filtered action for next confirmation
       storePendingAction(sessionId, filteredAction);
+
+      const roomLabel = specificRooms.length === 1 ? specificRooms[0] : `${specificRooms.length} rooms (${specificRooms.join(', ')})`;
 
       return {
         type: 'NEEDS_CONFIRMATION',
@@ -246,7 +278,7 @@ function processApprovalFlow(message, sessionId, conversationHistory = []) {
           ...filteredAction,
           requiresApproval: true
         },
-        message: `Ready to apply offer for ${specificRoom}:\n\n${filteredAction.description}\n\nShould I proceed? (yes/no)`
+        message: `Ready to apply offer for ${roomLabel}:\n\n${filteredAction.description}\n\nShould I proceed? (yes/no)`
       };
     }
 
@@ -284,7 +316,7 @@ function processApprovalFlow(message, sessionId, conversationHistory = []) {
   }
 
   // Case 3: Generic approval message (apply, approve, etc.) without specific room - apply all
-  if (isApprovalMessage(message) && !specificRoom) {
+  if (isApprovalMessage(message) && !hasRooms) {
     let pendingAction = getPendingAction(sessionId);
 
     if (!pendingAction) {
@@ -447,5 +479,7 @@ module.exports = {
   createAuditEntry,
   saveAuditEntry,
   getRecentAuditEntries,
-  formatConfirmationMessage
+  formatConfirmationMessage,
+  extractRoomsFromMessage,
+  filterActionToRooms
 };

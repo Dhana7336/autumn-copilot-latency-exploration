@@ -215,18 +215,21 @@ function planActionFromPrompt(prompt, contextData = {}) {
       endDate = new Date(now.getTime() + durationValue * 7 * 24 * 60 * 60 * 1000).toISOString();
     }
 
-    // Build reason string
+    // Build reason string - always include duration
     let reason;
+    const durationStr = `${durationValue} ${durationUnit}${durationValue > 1 ? 's' : ''}`;
+
     if (p.includes('flash')) {
-      reason = 'flash sale';
-    } else if (isPromotion) {
-      reason = `${discountPercent}% promotion`;
-    } else if (isIncrease) {
-      reason = 'surge pricing';
+      reason = `${durationStr} flash sale`;
     } else if (percentMatch) {
-      reason = `${percentMatch[1]}% ${isIncrease ? 'increase' : 'discount'}`;
+      const percentVal = percentMatch[1];
+      reason = `${durationStr} ${percentVal}% ${isIncrease ? 'increase' : 'discount'}`;
+    } else if (isPromotion) {
+      reason = `${durationStr} ${discountPercent}% promotion`;
+    } else if (isIncrease) {
+      reason = `${durationStr} surge pricing`;
     } else {
-      reason = `${durationValue}-${durationUnit} promotion`;
+      reason = `${durationStr} promotion`;
     }
 
     return {

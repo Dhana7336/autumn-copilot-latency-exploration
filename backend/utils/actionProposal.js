@@ -28,7 +28,7 @@ function buildActionProposal(prompt, context = {}) {
     case 'rate_clamp':
       return buildRateClampProposal(lower, rooms);
     case 'price_increase':
-      return buildPriceIncreaseProposal(lower, rooms);
+      return buildPriceIncreaseProposal(lower, rooms, competitors, reservations);
     case 'competitor_adjustment':
       return buildCompetitorAdjustmentProposal(lower, competitors);
     case 'analysis':

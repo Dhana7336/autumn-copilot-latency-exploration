@@ -629,7 +629,8 @@ async function applyTemporaryPricing(roomPricing, startDate, endDate, reason = '
     // Format duration for human-readable message
     let durationText = '';
     if (isTimeBased && reason.includes('hour')) {
-      const hourMatch = reason.match(/(\d+)-hour/);
+      // Match both "4-hour" and "4 hours" formats
+      const hourMatch = reason.match(/(\d+)[\s-]?hours?/);
       const hours = hourMatch ? hourMatch[1] : '1';
       durationText = `for the next ${hours} ${hours === '1' ? 'hour' : 'hours'}`;
     } else {
@@ -637,13 +638,23 @@ async function applyTemporaryPricing(roomPricing, startDate, endDate, reason = '
       durationText = `for ${daysDiff} ${daysDiff === 1 ? 'day' : 'days'}`;
     }
 
-    const roomName = roomPricing[0].roomType;
-    const oldPrice = roomPricing[0].currentPrice;
-    const newPrice = roomPricing[0].newPrice;
+    // Build message for all rooms
+    let messageText;
+    if (roomPricing.length === 1) {
+      const roomName = roomPricing[0].roomType;
+      const oldPrice = roomPricing[0].currentPrice;
+      const newPriceVal = roomPricing[0].newPrice;
+      messageText = `Done. ${roomName} is now $${newPriceVal} ${durationText}. The system will automatically revert it to $${oldPrice} after that.`;
+    } else {
+      // Multiple rooms
+      const roomDetails = roomPricing.map(rp => `${rp.roomType}: $${rp.currentPrice} → $${rp.newPrice}`).join(', ');
+      const roomNames = roomPricing.map(rp => rp.roomType).join(', ');
+      messageText = `Done. Applied ${durationText} pricing to ${roomPricing.length} rooms: ${roomDetails}. The system will automatically revert ${roomNames} after that.`;
+    }
 
     return {
       success: true,
-      message: `Done. ${roomName} is now $${newPrice} ${durationText}. The system will automatically revert it to $${oldPrice} after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.`,
+      message: `${messageText} You can see the updated prices on the dashboard right now. Keep an eye on bookings during this period.`,
       data: {
         tempOfferId,
         appliedOverrides: appliedOverrides.length,

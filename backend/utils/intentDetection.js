@@ -52,7 +52,7 @@ function detectIntent(lower) {
 }
 
 /**
- * Extract room type from prompt
+ * Extract room type from prompt (returns first match)
  */
 function extractRoomType(lower, rooms) {
   const roomKeywords = ['standard', 'deluxe', 'executive', 'premium', 'presidential', 'suite', 'bernard', 'larua', 'santiago', 'pilar', 'mariana'];
@@ -71,6 +71,45 @@ function extractRoomType(lower, rooms) {
   }
 
   return rooms[0]?.room_type || rooms[0]?.['Room Type'] || 'Standard Room';
+}
+
+/**
+ * Extract ALL room types from prompt (returns array of matches)
+ * Used when user mentions multiple rooms like "apply to Pilar and Mariana"
+ */
+function extractRoomTypes(lower, rooms) {
+  const roomKeywords = ['standard', 'deluxe', 'executive', 'premium', 'presidential', 'suite', 'bernard', 'larua', 'santiago', 'pilar', 'mariana'];
+  const foundRooms = [];
+
+  for (const keyword of roomKeywords) {
+    if (lower.includes(keyword)) {
+      const match = rooms.find(r => {
+        const type = (r.room_type || r['Room Type'] || '').toLowerCase();
+        return type.includes(keyword);
+      });
+      if (match) {
+        const roomName = match.room_type || match['Room Type'];
+        // Avoid duplicates
+        if (!foundRooms.includes(roomName)) {
+          foundRooms.push(roomName);
+        }
+      } else {
+        // Create room name from keyword if not found in data
+        const roomName = keyword.charAt(0).toUpperCase() + keyword.slice(1) + (keyword.includes('suite') ? '' : ' Room');
+        if (!foundRooms.includes(roomName)) {
+          foundRooms.push(roomName);
+        }
+      }
+    }
+  }
+
+  // If no rooms found, return first room as default
+  if (foundRooms.length === 0) {
+    const defaultRoom = rooms[0]?.room_type || rooms[0]?.['Room Type'] || 'Standard Room';
+    return [defaultRoom];
+  }
+
+  return foundRooms;
 }
 
 /**
@@ -165,6 +204,7 @@ function isImpactAnalysisRequest(prompt) {
 module.exports = {
   detectIntent,
   extractRoomType,
+  extractRoomTypes,
   extractPrice,
   extractPercentage,
   parseDuration,

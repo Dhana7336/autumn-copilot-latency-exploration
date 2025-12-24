@@ -13,6 +13,26 @@ import {
   Area
 } from "recharts";
 
+// Helper: Parse duration hours from reason/summary string
+function parseDurationFromText(text) {
+  if (!text) return null;
+  const lower = text.toLowerCase();
+
+  // Match patterns like "3 hours", "4-hour", "5hours"
+  const hourMatch = lower.match(/(\d+)[\s-]?hours?/);
+  if (hourMatch) return parseInt(hourMatch[1]);
+
+  // Match day patterns
+  const dayMatch = lower.match(/(\d+)[\s-]?days?/);
+  if (dayMatch) return parseInt(dayMatch[1]) * 24;
+
+  // Match week patterns
+  const weekMatch = lower.match(/(\d+)[\s-]?weeks?/);
+  if (weekMatch) return parseInt(weekMatch[1]) * 24 * 7;
+
+  return null;
+}
+
 // Helper: Get promotion status (RED, ORANGE, or none)
 function getPromotionStatus(action, currentTime) {
   if (!action) return { status: null, label: '', countdown: '' };
@@ -27,8 +47,24 @@ function getPromotionStatus(action, currentTime) {
   const actionTime = new Date(action.time);
   const now = currentTime;
 
+  // Calculate duration: prefer API-provided durationHours, then parse from reason/summary, then use dates, default to 1
+  let durationHours = action.durationHours;
+  if (!durationHours || durationHours <= 0) {
+    // Try parsing from reason or summary
+    durationHours = parseDurationFromText(action.reason) || parseDurationFromText(action.summary);
+  }
+  if (!durationHours && action.startDate && action.endDate) {
+    // Calculate from dates
+    const start = new Date(action.startDate);
+    const end = new Date(action.endDate);
+    durationHours = Math.ceil((end - start) / (1000 * 60 * 60));
+  }
+  if (!durationHours || durationHours <= 0) {
+    durationHours = 1; // Default fallback
+  }
+
   // Calculate end time based on duration
-  const durationMs = (action.durationHours || 1) * 60 * 60 * 1000;
+  const durationMs = durationHours * 60 * 60 * 1000;
   const endTime = new Date(actionTime.getTime() + durationMs);
 
   // Scheduled for future (ORANGE)
@@ -460,9 +496,19 @@ export default function Dashboard() {
                       {r.promoReason && (
                         <div className="text-xs text-red-500 mt-1">📢 {r.promoReason}</div>
                       )}
-                      {r.promoEndDate && (
-                        <div className="text-xs text-orange-500">⏰ Until {new Date(r.promoEndDate).toLocaleDateString()}</div>
-                      )}
+                      {r.promoEndDate && (() => {
+                        const endTime = new Date(r.promoEndDate);
+                        const remaining = endTime - currentTime;
+                        if (remaining > 0) {
+                          const hoursLeft = Math.floor(remaining / (1000 * 60 * 60));
+                          const minsLeft = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+                          const countdownText = hoursLeft > 0
+                            ? `Ends in ${hoursLeft}h ${minsLeft}m`
+                            : `Ends in ${minsLeft}m`;
+                          return <div className="text-xs text-orange-500 font-semibold">⏰ {countdownText}</div>;
+                        }
+                        return <div className="text-xs text-gray-500">⏰ Promotion ended</div>;
+                      })()}
                     </div>
                   );
                 }) : <div className="text-center text-gray-400">No rooms</div>}

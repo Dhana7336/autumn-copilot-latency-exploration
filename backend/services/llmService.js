@@ -64,7 +64,6 @@ function formatLists(text) {
           prevWasBlank = true;
         }
       } else {
-        // Not in a list, keep blank line but avoid duplicates
         if (!prevWasBlank) {
           result.push('');
           prevWasBlank = true;

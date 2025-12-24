@@ -3,6 +3,8 @@
  * Builds context-aware prompts for the AI assistant
  */
 
+const { calculateOccupancy } = require('./revenueCalculations');
+
 /**
  * Build system prompt with hotel context
  */
@@ -11,28 +13,46 @@ function buildSystemPrompt(contextData) {
   const todayISO = now.toISOString().split('T')[0];
   const dateStr = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-  const roomSummary = (contextData.rooms || []).map(r => {
+  const rooms = contextData.rooms || [];
+  const reservations = contextData.reservations || [];
+
+  // Build room summary with historical occupancy
+  const roomSummary = rooms.map(r => {
     const type = r.room_type || r['Room Type'];
-    const total = r.total_rooms || r['Total Rooms'] || 0;
-    const price = r.base_price || r['Base Price'] || 0;
-    return `${type}: ${total} rooms at $${price}`;
+    const total = parseInt(r.total_rooms || r['Total Rooms'] || 0);
+    const price = parseFloat(r.base_price || r['Base Price'] || 0);
+    const occupancy = calculateOccupancy(reservations, type, total);
+    return `${type}: ${total} rooms at $${price} (${occupancy.percentage}% occupancy${occupancy.isHistorical ? ' avg' : ''})`;
   }).join(', ');
 
-  const totalRooms = (contextData.rooms || []).reduce((sum, r) =>
+  const totalRooms = rooms.reduce((sum, r) =>
     sum + (parseInt(r.total_rooms || r['Total Rooms']) || 0), 0) || 33;
 
-  const todayCheckIns = (contextData.reservations || []).filter(r => {
+  const todayCheckIns = reservations.filter(r => {
     const checkIn = r.check_in_date || r['Check In Date'];
     return checkIn === todayISO;
   }).length;
 
-  const occupiedToday = (contextData.reservations || []).filter(r => {
+  const occupiedToday = reservations.filter(r => {
     const checkIn = r.check_in_date || r['Check In Date'];
     const checkOut = r.check_out_date || r['Check Out Date'];
     const status = (r.Status || r.status || '').toLowerCase();
     return checkIn <= todayISO && checkOut > todayISO &&
            (status === 'confirmed' || status === 'in-house');
   }).length;
+
+  // Calculate historical average occupancy if no current bookings
+  let avgOccupancy = occupiedToday / totalRooms;
+  if (occupiedToday === 0 && reservations.length > 0) {
+    // Use historical average from all room types
+    const totalHistoricalRate = rooms.reduce((sum, r) => {
+      const type = r.room_type || r['Room Type'];
+      const total = parseInt(r.total_rooms || r['Total Rooms'] || 0);
+      const occ = calculateOccupancy(reservations, type, total);
+      return sum + occ.rate;
+    }, 0);
+    avgOccupancy = rooms.length > 0 ? totalHistoricalRate / rooms.length : 0.65;
+  }
 
   const competitorSummary = (contextData.competitors || []).slice(0, 5).map(c => {
     const name = c.competitor_name || c['Competitor Name'];
@@ -41,7 +61,7 @@ function buildSystemPrompt(contextData) {
   }).join(', ');
 
   const reservationsByDate = {};
-  (contextData.reservations || []).forEach(r => {
+  reservations.forEach(r => {
     const checkIn = r.check_in_date || r['Check In Date'];
     const checkOut = r.check_out_date || r['Check Out Date'];
     const roomType = r.room_type || r['Room Type'];
@@ -71,7 +91,7 @@ function buildSystemPrompt(contextData) {
     }
   }
 
-  const allReservations = (contextData.reservations || []).slice(0, 50).map(r => {
+  const allReservations = reservations.slice(0, 50).map(r => {
     const checkIn = r.check_in_date || r['Check In Date'];
     const checkOut = r.check_out_date || r['Check Out Date'];
     const roomType = r.room_type || r['Room Type'];
@@ -80,29 +100,122 @@ function buildSystemPrompt(contextData) {
     return `${guest} | ${roomType} | ${checkIn} to ${checkOut} | ${status}`;
   }).join('\n');
 
+  // Get US holidays for pricing context
+  const usHolidays = getUpcomingUSHolidays();
+
   return `You are an AI hotel revenue assistant for Lily Hall Hotel. Connected to LIVE database.
 
 === TODAY: ${dateStr} (${todayISO}) ===
 
-RULES: You HAVE live data access. NEVER say "I don't have access". Respond with specific data.
+RULES:
+- You HAVE live data access. NEVER say "I don't have access".
+- ALWAYS provide revenue impact estimates using historical occupancy data.
+- When user asks about future dates (weekend, holiday, specific day), use HISTORICAL AVERAGE OCCUPANCY (${Math.round(avgOccupancy * 100)}%) to project revenue impact.
+- NEVER say "cannot process because no reservations" - use historical data for projections instead.
+- For price changes, always show: current price, new price, projected revenue impact, occupancy impact, and risk level.
 
 ROOMS (${totalRooms} total): ${roomSummary || 'Bernard: 8, LaRua: 6, Santiago: 10, Pilar: 5, Mariana: 4'}
 
-TODAY: ${todayCheckIns} check-ins, ${occupiedToday}/${totalRooms} occupied (${Math.round(occupiedToday/totalRooms*100)}%)
+CURRENT STATUS: ${todayCheckIns} check-ins today, ${occupiedToday}/${totalRooms} currently occupied (${Math.round(occupiedToday/totalRooms*100)}%)
+HISTORICAL AVG OCCUPANCY: ${Math.round(avgOccupancy * 100)}% (use this for future projections)
 
 NEXT 14 DAYS:
-${upcomingDates.length > 0 ? upcomingDates.join('\n') : 'No upcoming reservations'}
+${upcomingDates.length > 0 ? upcomingDates.join('\n') : 'No scheduled reservations - use historical average ('+Math.round(avgOccupancy * 100)+'%) for projections'}
 
+${usHolidays.length > 0 ? 'UPCOMING US HOLIDAYS:\n' + usHolidays.join('\n') + '\n' : ''}
 RESERVATIONS:
-${allReservations || 'None'}
+${allReservations || 'No current reservations - use historical occupancy data for estimates'}
 
 COMPETITORS: ${competitorSummary || 'Hilton: $225, Margaritaville: $190, Hampton Inn: $165'}
+
+REVENUE PROJECTION FORMULA:
+- For price increase X%: Occupancy decreases by ~1.5X% (demand elasticity)
+- Projected Revenue = New Price × Rooms × Projected Occupancy × Days
+- Always show 30-day revenue impact
 
 ACTIONS: applyPriceOverride, applyTemporaryPricing, adjustRateClamp, applyPriceIncrease, updateCompetitorDifferential
 
 DURATION: "2 weeks" = 14 days, "1 month" = 30 days, "weekend" = 2 days, "flash" = 4 hours
 
-Be concise and data-driven.`;
+Be concise and data-driven. Always provide specific numbers and estimates.`;
+}
+
+/**
+ * Get upcoming US holidays for the next 90 days
+ */
+function getUpcomingUSHolidays() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const nextYear = year + 1;
+
+  // Major US holidays with dates
+  const holidays = [
+    { name: "New Year's Day", date: `${nextYear}-01-01` },
+    { name: "Martin Luther King Jr. Day", date: getThirdMonday(nextYear, 0) }, // 3rd Monday of January
+    { name: "Presidents' Day", date: getThirdMonday(nextYear, 1) }, // 3rd Monday of February
+    { name: "Memorial Day", date: getLastMonday(year, 4) }, // Last Monday of May
+    { name: "Independence Day", date: `${year}-07-04` },
+    { name: "Labor Day", date: getFirstMonday(year, 8) }, // 1st Monday of September
+    { name: "Columbus Day", date: getSecondMonday(year, 9) }, // 2nd Monday of October
+    { name: "Veterans Day", date: `${year}-11-11` },
+    { name: "Thanksgiving", date: getFourthThursday(year, 10) }, // 4th Thursday of November
+    { name: "Christmas Eve", date: `${year}-12-24` },
+    { name: "Christmas Day", date: `${year}-12-25` },
+    { name: "New Year's Eve", date: `${year}-12-31` },
+  ];
+
+  const todayISO = now.toISOString().split('T')[0];
+  const futureDate = new Date(now);
+  futureDate.setDate(futureDate.getDate() + 90);
+  const futureISO = futureDate.toISOString().split('T')[0];
+
+  return holidays
+    .filter(h => h.date >= todayISO && h.date <= futureISO)
+    .map(h => `${h.date}: ${h.name}`)
+    .slice(0, 5);
+}
+
+// Helper functions for calculating holiday dates
+function getFirstMonday(year, month) {
+  const date = new Date(year, month, 1);
+  while (date.getDay() !== 1) date.setDate(date.getDate() + 1);
+  return date.toISOString().split('T')[0];
+}
+
+function getSecondMonday(year, month) {
+  const date = new Date(year, month, 1);
+  let count = 0;
+  while (count < 2) {
+    if (date.getDay() === 1) count++;
+    if (count < 2) date.setDate(date.getDate() + 1);
+  }
+  return date.toISOString().split('T')[0];
+}
+
+function getThirdMonday(year, month) {
+  const date = new Date(year, month, 1);
+  let count = 0;
+  while (count < 3) {
+    if (date.getDay() === 1) count++;
+    if (count < 3) date.setDate(date.getDate() + 1);
+  }
+  return date.toISOString().split('T')[0];
+}
+
+function getFourthThursday(year, month) {
+  const date = new Date(year, month, 1);
+  let count = 0;
+  while (count < 4) {
+    if (date.getDay() === 4) count++;
+    if (count < 4) date.setDate(date.getDate() + 1);
+  }
+  return date.toISOString().split('T')[0];
+}
+
+function getLastMonday(year, month) {
+  const date = new Date(year, month + 1, 0); // Last day of month
+  while (date.getDay() !== 1) date.setDate(date.getDate() - 1);
+  return date.toISOString().split('T')[0];
 }
 
 /**

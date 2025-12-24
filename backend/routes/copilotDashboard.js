@@ -123,7 +123,7 @@ router.get('/', async (req, res) => {
           rp.roomType?.toLowerCase().includes(roomName.toLowerCase())
         );
         if (roomPricing) {
-          return { price: roomPricing.newPrice, isTemporary: true, tempOfferId: offer.tempOfferId, reason: offer.reason, endDate: offer.endDate };
+          return { price: roomPricing.newPrice, isTemporary: true, tempOfferId: offer.tempOfferId, reason: offer.reason, startDate: offer.startDate, endDate: offer.endDate };
         }
       }
 
@@ -142,6 +142,40 @@ router.get('/', async (req, res) => {
       return { price: basePrice, isTemporary: false };
     };
 
+    // Helper to parse duration hours from reason string
+    const parseDurationHours = (reason, startDate, endDate) => {
+      if (!reason) {
+        // Fallback: calculate from dates
+        if (startDate && endDate) {
+          const start = new Date(startDate);
+          const end = new Date(endDate);
+          return Math.ceil((end - start) / (1000 * 60 * 60));
+        }
+        return 1;
+      }
+
+      // Match patterns like "3 hours", "4-hour", "5hours"
+      const hourMatch = reason.match(/(\d+)[\s-]?hours?/i);
+      if (hourMatch) return parseInt(hourMatch[1]);
+
+      // Match day patterns
+      const dayMatch = reason.match(/(\d+)[\s-]?days?/i);
+      if (dayMatch) return parseInt(dayMatch[1]) * 24;
+
+      // Match week patterns
+      const weekMatch = reason.match(/(\d+)[\s-]?weeks?/i);
+      if (weekMatch) return parseInt(weekMatch[1]) * 24 * 7;
+
+      // Fallback: calculate from dates
+      if (startDate && endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        return Math.ceil((end - start) / (1000 * 60 * 60));
+      }
+
+      return 1; // Default to 1 hour
+    };
+
     // Load recent actions from audit log
     const auditLog = await fs.readFile(AUDIT_PATH, 'utf8').then(d => JSON.parse(d)).catch(() => []);
     const auditActions = auditLog.slice(-10).reverse().map(entry => {
@@ -149,6 +183,10 @@ router.get('/', async (req, res) => {
         entry.applied?.[0]?.data?.tempOfferId === t.tempOfferId ||
         (entry.intent === 'applyTemporaryPricing' && t.appliedAt && Math.abs(new Date(t.appliedAt) - new Date(entry.time)) < 60000)
       );
+
+      // Calculate duration hours from reason or dates
+      const reason = tempOffer?.reason || '';
+      const durationHours = parseDurationHours(reason, tempOffer?.startDate, tempOffer?.endDate);
 
       return {
         time: entry.time,
@@ -160,7 +198,9 @@ router.get('/', async (req, res) => {
         roomType: tempOffer?.roomPricing?.[0]?.roomType || entry.approvals?.[0]?.parameters?.roomType,
         startDate: tempOffer?.startDate,
         endDate: tempOffer?.endDate,
-        tempOfferId: tempOffer?.tempOfferId
+        tempOfferId: tempOffer?.tempOfferId,
+        reason: reason,
+        durationHours: durationHours
       };
     });
 
@@ -184,6 +224,15 @@ router.get('/', async (req, res) => {
     // Build room details with effective prices
     const roomDetails = enrichedRooms.map(r => {
       const effectivePriceData = getEffectivePrice(r.name, r.currentPrice);
+      // Calculate duration hours if we have dates
+      let promoDurationHours = null;
+      if (effectivePriceData.startDate && effectivePriceData.endDate) {
+        const start = new Date(effectivePriceData.startDate);
+        const end = new Date(effectivePriceData.endDate);
+        promoDurationHours = Math.ceil((end - start) / (1000 * 60 * 60));
+      } else if (effectivePriceData.reason) {
+        promoDurationHours = parseDurationHours(effectivePriceData.reason, null, null);
+      }
       return {
         id: r.id,
         name: r.name,
@@ -192,7 +241,9 @@ router.get('/', async (req, res) => {
         isTemporary: effectivePriceData.isTemporary,
         tempOfferId: effectivePriceData.tempOfferId,
         promoReason: effectivePriceData.reason,
+        promoStartDate: effectivePriceData.startDate,
         promoEndDate: effectivePriceData.endDate,
+        promoDurationHours: promoDurationHours,
         occupancy: Math.round(r.occupancy * 100),
         occupancyStatus: r.occupancyStatus,
         competitorAvg: r.competitorAvg,

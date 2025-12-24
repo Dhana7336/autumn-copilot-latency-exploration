@@ -5,7 +5,7 @@
 
 const { calculateOccupancy, calculateCompetitorAverage, suggestOptimalPrice, estimateRevenueImpact, findUnderperformingRooms } = require('./revenueCalculations');
 const { parseDateReference, formatDate, getToday } = require('./dateUtils');
-const { extractRoomType, extractPrice, extractPercentage, parseDuration } = require('./intentDetection');
+const { extractRoomType, extractRoomTypes, extractPrice, extractPercentage, parseDuration } = require('./intentDetection');
 
 /**
  * Build price override proposal
@@ -53,51 +53,75 @@ function buildPriceOverrideProposal(lower, rooms, competitors, reservations) {
 
 /**
  * Build temporary pricing proposal
+ * Supports multiple rooms when user mentions multiple room types
  */
 function buildTemporaryPricingProposal(lower, rooms, competitors, reservations) {
-  const roomType = extractRoomType(lower, rooms);
+  // Extract ALL room types mentioned (supports "apply to Pilar and Mariana")
+  const roomTypes = extractRoomTypes(lower, rooms);
   const percentage = extractPercentage(lower);
   const explicitPrice = extractPrice(lower);
-
-  const room = rooms.find(r => (r.room_type || r['Room Type']) === roomType);
-  const currentPrice = room ? parseFloat(room.base_price || room['Base Price'] || 150) : 150;
-  const totalRooms = room ? parseInt(room.total_rooms || room['Total Rooms'] || 10) : 10;
 
   const duration = parseDuration(lower);
   void competitors;
 
-  let newPrice = currentPrice;
   const isDiscount = lower.includes('discount') || lower.includes('off') || lower.includes('decrease') || lower.includes('lower');
 
-  if (explicitPrice) {
-    newPrice = explicitPrice;
-  } else if (percentage) {
-    newPrice = isDiscount
-      ? Math.round(currentPrice * (1 - percentage / 100))
-      : Math.round(currentPrice * (1 + percentage / 100));
-  } else {
-    newPrice = isDiscount ? Math.round(currentPrice * 0.9) : Math.round(currentPrice * 1.1);
-  }
+  // Build roomPricing array for all mentioned rooms
+  const roomPricing = roomTypes.map(roomType => {
+    const room = rooms.find(r => (r.room_type || r['Room Type']) === roomType);
+    const currentPrice = room ? parseFloat(room.base_price || room['Base Price'] || 150) : 150;
+
+    let newPrice = currentPrice;
+    if (explicitPrice) {
+      newPrice = explicitPrice;
+    } else if (percentage) {
+      newPrice = isDiscount
+        ? Math.round(currentPrice * (1 - percentage / 100))
+        : Math.round(currentPrice * (1 + percentage / 100));
+    } else {
+      newPrice = isDiscount ? Math.round(currentPrice * 0.9) : Math.round(currentPrice * 1.1);
+    }
+
+    return { roomType, currentPrice, newPrice };
+  });
 
   const now = new Date();
   const startDate = now.toISOString();
   const endDate = new Date(now.getTime() + duration.hours * 60 * 60 * 1000).toISOString();
 
-  const occupancy = calculateOccupancy(reservations, roomType, totalRooms);
-  const reason = isDiscount ? `${duration.label} flash sale` : `${duration.label} surge pricing`;
+  // Unused: reservations parameter kept for API compatibility
+  void reservations;
+
+  // Build reason string with duration and percentage if provided
+  let reason;
+  if (percentage) {
+    reason = `${duration.label} ${percentage}% ${isDiscount ? 'discount' : 'increase'}`;
+  } else {
+    reason = isDiscount ? `${duration.label} flash sale` : `${duration.label} surge pricing`;
+  }
+
+  // Build description showing all rooms
+  const roomDescriptions = roomPricing.map(rp => `${rp.roomType} $${rp.currentPrice} → $${rp.newPrice}`).join(', ');
+  const roomNamesList = roomTypes.join(', ');
 
   return {
     actionName: 'applyTemporaryPricing',
     parameters: {
-      roomPricing: [{ roomType, currentPrice, newPrice }],
+      roomPricing,
       startDate,
       endDate,
       reason
     },
-    description: `Apply ${reason}: ${roomType} $${currentPrice} → $${newPrice}`,
-    reasoning: `Temporary ${isDiscount ? 'discount' : 'increase'} for ${duration.label}. Current occupancy: ${occupancy.percentage}%. Will auto-revert after ${duration.label}.`,
+    description: `Apply ${reason}: ${roomDescriptions}`,
+    reasoning: `Temporary ${isDiscount ? 'discount' : 'increase'} for ${duration.label} on ${roomTypes.length} room(s): ${roomNamesList}. Will auto-revert after ${duration.label}.`,
     confidence: 0.85,
-    impact: { currentPrice, newPrice, duration: duration.label, autoRevert: true },
+    impact: {
+      rooms: roomTypes,
+      roomCount: roomTypes.length,
+      duration: duration.label,
+      autoRevert: true,
+      details: roomPricing
+    },
     requiresApproval: true
   };
 }
@@ -141,57 +165,120 @@ function buildRateClampProposal(lower, rooms) {
 }
 
 /**
- * Build price increase/decrease proposal
+ * Build price increase/decrease proposal with full revenue impact analysis
+ * Always shows simulation first, then recommendation, then requires approval for action
  */
-function buildPriceIncreaseProposal(lower, rooms) {
+function buildPriceIncreaseProposal(lower, rooms, competitors, reservations) {
   const percentage = extractPercentage(lower) || 10;
   const isDecrease = lower.includes('decrease') || lower.includes('lower') || lower.includes('reduce') || lower.includes('discount');
 
-  let targetRooms = [];
-  const roomKeywords = ['standard', 'deluxe', 'executive', 'premium', 'presidential', 'suite', 'all'];
+  // Extract room types using the enhanced function
+  let targetRooms = extractRoomTypes(lower, rooms);
 
-  for (const keyword of roomKeywords) {
-    if (lower.includes(keyword)) {
-      if (keyword === 'all') {
-        targetRooms = rooms.map(r => r.room_type || r['Room Type']);
-        break;
-      }
-      const match = rooms.find(r => (r.room_type || r['Room Type'] || '').toLowerCase().includes(keyword));
-      if (match) targetRooms.push(match.room_type || match['Room Type']);
-    }
-  }
-
-  if (targetRooms.length === 0) {
-    targetRooms = isDecrease
-      ? rooms.filter(r => (r.room_type || r['Room Type'] || '').toLowerCase().includes('standard')).map(r => r.room_type || r['Room Type'])
-      : rooms.filter(r => (r.room_type || r['Room Type'] || '').toLowerCase().includes('suite')).map(r => r.room_type || r['Room Type']);
-
-    if (targetRooms.length === 0) {
-      targetRooms = [rooms[0]?.room_type || rooms[0]?.['Room Type'] || 'Standard Room'];
-    }
+  // Check for 'all' keyword
+  if (lower.includes('all room') || lower.includes('all prices')) {
+    targetRooms = rooms.map(r => r.room_type || r['Room Type']);
   }
 
   let scope = 'all';
   if (lower.includes('weekend')) scope = 'weekend';
   if (lower.includes('weekday')) scope = 'weekday';
+  if (lower.includes('holiday')) scope = 'holiday';
 
-  const firstRoom = rooms.find(r => (r.room_type || r['Room Type']) === targetRooms[0]);
-  const currentPrice = firstRoom ? parseFloat(firstRoom.base_price || firstRoom['Base Price'] || 150) : 150;
-  const newPrice = isDecrease
-    ? Math.round(currentPrice * (1 - percentage / 100))
-    : Math.round(currentPrice * (1 + percentage / 100));
+  // Calculate detailed impact for each room
+  const roomAnalysis = targetRooms.map(roomType => {
+    const room = rooms.find(r => (r.room_type || r['Room Type']) === roomType);
+    const currentPrice = room ? parseFloat(room.base_price || room['Base Price'] || 150) : 150;
+    const totalRooms = room ? parseInt(room.total_rooms || room['Total Rooms'] || 10) : 10;
+
+    const newPrice = isDecrease
+      ? Math.round(currentPrice * (1 - percentage / 100))
+      : Math.round(currentPrice * (1 + percentage / 100));
+
+    // Get occupancy (uses historical average if no current reservations)
+    const occupancy = calculateOccupancy(reservations, roomType, totalRooms);
+
+    // Get competitor data for context
+    const competitorData = calculateCompetitorAverage(competitors, roomType);
+
+    // Calculate 30-day revenue impact
+    const impact = estimateRevenueImpact(currentPrice, newPrice, occupancy.rate, totalRooms, 30);
+
+    return {
+      roomType,
+      currentPrice,
+      newPrice,
+      totalRooms,
+      occupancy: occupancy.percentage,
+      isHistoricalOccupancy: occupancy.isHistorical,
+      competitorAvg: competitorData.average || null,
+      currentRevenue: impact.currentRevenue,
+      projectedRevenue: impact.projectedRevenue,
+      revenueDelta: impact.revenueDelta,
+      revenueDeltaPct: impact.revenueDeltaPct,
+      occupancyChange: impact.occupancyDelta,
+      projectedOccupancy: impact.projectedOccupancy,
+      riskLevel: impact.riskLevel
+    };
+  });
+
+  // Calculate totals
+  const totalCurrentRevenue = roomAnalysis.reduce((sum, r) => sum + r.currentRevenue, 0);
+  const totalProjectedRevenue = roomAnalysis.reduce((sum, r) => sum + r.projectedRevenue, 0);
+  const totalRevenueDelta = totalProjectedRevenue - totalCurrentRevenue;
+  const totalRevenueDeltaPct = totalCurrentRevenue > 0 ? Math.round((totalRevenueDelta / totalCurrentRevenue) * 100 * 10) / 10 : 0;
+
+  // Build analysis text
+  let analysisText = `IMPACT ANALYSIS (30-day projection)\n\n`;
+  roomAnalysis.forEach(r => {
+    analysisText += `${r.roomType}:\n`;
+    analysisText += `  Price: $${r.currentPrice} → $${r.newPrice} (${isDecrease ? '-' : '+'}${percentage}%)\n`;
+    analysisText += `  Occupancy: ${r.occupancy}%${r.isHistoricalOccupancy ? ' (historical avg)' : ''} → ${r.projectedOccupancy}%\n`;
+    analysisText += `  Revenue: $${r.currentRevenue.toLocaleString()} → $${r.projectedRevenue.toLocaleString()} (${r.revenueDelta >= 0 ? '+' : ''}$${r.revenueDelta.toLocaleString()})\n`;
+    if (r.competitorAvg) {
+      analysisText += `  vs Competitors: $${r.competitorAvg} avg\n`;
+    }
+    analysisText += `  Risk: ${r.riskLevel.toUpperCase()}\n\n`;
+  });
+
+  // Build recommendation
+  let recommendation = `RECOMMENDATION\n`;
+  if (totalRevenueDelta > 0) {
+    recommendation += `This ${isDecrease ? 'price reduction' : 'price increase'} is projected to ${isDecrease ? 'boost occupancy and ' : ''}generate +$${totalRevenueDelta.toLocaleString()} additional revenue over 30 days.`;
+  } else {
+    recommendation += `This ${isDecrease ? 'price reduction' : 'price increase'} may result in $${Math.abs(totalRevenueDelta).toLocaleString()} lower revenue over 30 days. Consider adjusting the percentage.`;
+  }
+
+  const overallRisk = roomAnalysis.some(r => r.riskLevel === 'high') ? 'high' :
+                      roomAnalysis.some(r => r.riskLevel === 'medium') ? 'medium' : 'low';
 
   return {
     actionName: 'applyPriceIncrease',
-    parameters: { roomTypes: targetRooms, percentage: isDecrease ? -percentage : percentage, scope },
-    description: `${isDecrease ? 'Decrease' : 'Increase'} ${targetRooms.join(', ')} by ${percentage}%`,
-    reasoning: `Apply ${percentage}% ${isDecrease ? 'reduction' : 'increase'} to ${targetRooms.length} room type(s) for ${scope} pricing.`,
-    confidence: 0.82,
+    parameters: {
+      roomTypes: targetRooms,
+      percentage: isDecrease ? -percentage : percentage,
+      scope,
+      roomAnalysis // Include detailed analysis for execution
+    },
+    description: `${isDecrease ? 'Decrease' : 'Increase'} ${targetRooms.join(', ')} by ${percentage}%${scope !== 'all' ? ` (${scope} only)` : ''}`,
+    reasoning: analysisText + recommendation,
+    confidence: 0.85,
     impact: {
       roomTypes: targetRooms,
+      roomCount: targetRooms.length,
       percentageChange: `${isDecrease ? '-' : '+'}${percentage}%`,
       scope,
-      example: `${targetRooms[0]}: $${currentPrice} → $${newPrice}`
+      totalCurrentRevenue,
+      totalProjectedRevenue,
+      totalRevenueDelta: `${totalRevenueDelta >= 0 ? '+' : ''}$${totalRevenueDelta.toLocaleString()}`,
+      totalRevenueDeltaPct: `${totalRevenueDeltaPct >= 0 ? '+' : ''}${totalRevenueDeltaPct}%`,
+      overallRisk,
+      details: roomAnalysis.map(r => ({
+        room: r.roomType,
+        price: `$${r.currentPrice} → $${r.newPrice}`,
+        revenue: `${r.revenueDelta >= 0 ? '+' : ''}$${r.revenueDelta.toLocaleString()}`,
+        risk: r.riskLevel
+      }))
     },
     requiresApproval: true
   };

@@ -1,0 +1,6 @@
+[
+  { "id": "r101", "currentPrice": 110, "occupancy": 0.70, "compAvg": 115, "optimalPrice": 125 },
+  { "id": "r102", "currentPrice": 170, "occupancy": 0.85, "compAvg": 175, "optimalPrice": 195 },
+  { "id": "r201", "currentPrice": 300, "occupancy": 0.50, "compAvg": 320, "optimalPrice": 320 },
+  { "id": "r202", "currentPrice": 65,  "occupancy": 0.30, "compAvg": 70,  "optimalPrice": 68 }
+]

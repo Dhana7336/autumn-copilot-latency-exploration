@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{ font-family: system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial; margin:0 }
+.app main{ padding:20px }
+.controls{ display:flex; gap:8px; margin-bottom:16px }
+.grid{ display:flex; gap:12px; flex-wrap:wrap }
+.card{ border:1px solid #ddd; padding:12px; border-radius:6px; width:220px }
+.suggestions .card{ margin-bottom:8px }
+.row{ display:flex; gap:8px; align-items:center }
+.apply{ background:#C099DD; color:#fff; border:0; padding:8px 12px; border-radius:6px }
+
+/* Signup page styles */
+body { background: #FBF8FC; }
+.signup-page{ min-height:100vh; display:flex; flex-direction:column }
+.brand{ position:fixed; top:20px; left:28px; font-weight:600; color:#7C4DA7 }
+.signup-main{ flex:1; display:flex; align-items:center; justify-content:center; padding:40px 20px }
+.signup-card{ width:100%; max-width:640px; background:#ffffff; border-radius:16px; box-shadow: 0 8px 30px rgba(30,20,60,0.06); padding:40px; box-sizing:border-box }
+.card-title{ margin:0; font-size:20px; text-align:center; color:#222; font-weight:600 }
+.card-sub{ margin:10px 0 22px; text-align:center; color:#666; font-size:14px }
+.form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px }
+.field{ display:flex; flex-direction:column }
+.label{ font-size:13px; color:#555; margin-bottom:8px }
+.input{ padding:12px 14px; border-radius:10px; border:1px solid #e6e1ea; background:#faf9fb }
+.input:focus{ outline:2px solid rgba(124,77,167,0.14); border-color:rgba(124,77,167,0.25) }
+.card-footer{ display:flex; align-items:center; justify-content:space-between; margin-top:20px }
+.helper{ color:#8a8792; font-size:12px }
+.primary{ background:#7C4DA7; color:#fff; border:0; padding:12px 18px; border-radius:10px; box-shadow:0 6px 18px rgba(124,77,167,0.12); cursor:pointer }
+.primary:disabled{ opacity:0.5; cursor:not-allowed; box-shadow:none }
+
+/* Shadow removed - user requested no shadows */
+

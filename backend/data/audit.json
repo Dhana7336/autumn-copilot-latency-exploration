@@ -1,0 +1,3570 @@
+[
+  {
+    "time": "2025-12-18T01:15:28.803Z",
+    "operator": "test@hotel.com",
+    "prompt": "Set Standard Room to $200 on Dec 25",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-25",
+          "newPrice": 200
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T01:15:28.803Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $200 applied for standard on 2025-12-25",
+        "data": {
+          "timestamp": "2025-12-18T01:15:28.803Z",
+          "action": "applyPriceOverride",
+          "roomId": "standard",
+          "date": "2025-12-25",
+          "newPrice": 200,
+          "status": "applied"
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-25",
+          "newPrice": 200
+        },
+        "timestamp": "2025-12-18T01:15:28.803Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T01:30:48.997Z",
+    "operator": "demo@hotel.com",
+    "prompt": "Set Standard Room to $200 on Dec 25",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-25",
+          "newPrice": 200
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T01:30:48.997Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $200 applied for standard on 2025-12-25",
+        "data": {
+          "timestamp": "2025-12-18T01:30:48.997Z",
+          "action": "applyPriceOverride",
+          "roomId": "standard",
+          "date": "2025-12-25",
+          "newPrice": 200,
+          "status": "applied"
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-25",
+          "newPrice": 200
+        },
+        "timestamp": "2025-12-18T01:30:48.997Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T01:30:56.999Z",
+    "operator": "demo@hotel.com",
+    "prompt": "Direct action: adjustRateClamp",
+    "intent": "adjustRateClamp",
+    "approvals": [
+      {
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "Deluxe Room",
+          "clampType": "floor",
+          "newValue": 150,
+          "startDate": "2025-12-20",
+          "endDate": "2025-12-31"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T01:30:56.999Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Minimum price of $150 set for Deluxe Room from 2025-12-20 to 2025-12-31",
+        "data": {
+          "timestamp": "2025-12-18T01:30:56.999Z",
+          "action": "adjustRateClamp",
+          "roomType": "Deluxe Room",
+          "clampType": "floor",
+          "newValue": 150,
+          "startDate": "2025-12-20",
+          "endDate": "2025-12-31",
+          "status": "applied"
+        },
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "Deluxe Room",
+          "clampType": "floor",
+          "newValue": 150,
+          "startDate": "2025-12-20",
+          "endDate": "2025-12-31"
+        },
+        "timestamp": "2025-12-18T01:30:56.999Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T01:31:11.846Z",
+    "operator": "demo@hotel.com",
+    "prompt": "Direct action: updateCompetitorWeight",
+    "intent": "updateCompetitorWeight",
+    "approvals": [
+      {
+        "actionName": "updateCompetitorWeight",
+        "parameters": {
+          "competitorName": "Ritz",
+          "newWeight": 0.7
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T01:31:11.846Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Cannot read properties of undefined (reading 'toLowerCase')",
+        "actionName": "updateCompetitorWeight",
+        "parameters": {
+          "competitorName": "Ritz",
+          "newWeight": 0.7
+        },
+        "timestamp": "2025-12-18T01:31:11.846Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T01:31:11.859Z",
+    "operator": "demo@hotel.com",
+    "prompt": "Direct action: updateCompetitorDifferential",
+    "intent": "updateCompetitorDifferential",
+    "approvals": [
+      {
+        "actionName": "updateCompetitorDifferential",
+        "parameters": {
+          "competitorName": "Marriott",
+          "newDifferential": -20
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T01:31:11.859Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Cannot read properties of undefined (reading 'toLowerCase')",
+        "actionName": "updateCompetitorDifferential",
+        "parameters": {
+          "competitorName": "Marriott",
+          "newDifferential": -20
+        },
+        "timestamp": "2025-12-18T01:31:11.859Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T01:33:00.198Z",
+    "operator": "demo@hotel.com",
+    "prompt": "Direct action: updateCompetitorWeight",
+    "intent": "updateCompetitorWeight",
+    "approvals": [
+      {
+        "actionName": "updateCompetitorWeight",
+        "parameters": {
+          "competitorName": "Plaza",
+          "newWeight": 0.7
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T01:33:00.198Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Competitor weight for The Plaza Hotel updated to 70%",
+        "data": {
+          "timestamp": "2025-12-18T01:33:00.197Z",
+          "action": "updateCompetitorWeight",
+          "competitorName": "The Plaza Hotel",
+          "oldWeight": 0.5,
+          "newWeight": 0.7,
+          "status": "applied"
+        },
+        "actionName": "updateCompetitorWeight",
+        "parameters": {
+          "competitorName": "Plaza",
+          "newWeight": 0.7
+        },
+        "timestamp": "2025-12-18T01:33:00.198Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T01:33:00.217Z",
+    "operator": "demo@hotel.com",
+    "prompt": "Direct action: updateCompetitorDifferential",
+    "intent": "updateCompetitorDifferential",
+    "approvals": [
+      {
+        "actionName": "updateCompetitorDifferential",
+        "parameters": {
+          "competitorName": "Manhattan",
+          "newDifferential": -20
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T01:33:00.217Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Pricing set to $20 below Manhattan Grand Hotel",
+        "data": {
+          "timestamp": "2025-12-18T01:33:00.217Z",
+          "action": "updateCompetitorDifferential",
+          "competitorName": "Manhattan Grand Hotel",
+          "newDifferential": -20,
+          "strategy": "undercut",
+          "status": "applied"
+        },
+        "actionName": "updateCompetitorDifferential",
+        "parameters": {
+          "competitorName": "Manhattan",
+          "newDifferential": -20
+        },
+        "timestamp": "2025-12-18T01:33:00.217Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T04:52:47.254Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 179
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T04:52:47.254Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $179 applied for standard on 2025-12-18",
+        "data": {
+          "timestamp": "2025-12-18T04:52:47.254Z",
+          "action": "applyPriceOverride",
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 179,
+          "status": "applied"
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 179
+        },
+        "timestamp": "2025-12-18T04:52:47.254Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T06:18:58.926Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "adjustRateClamp",
+    "approvals": [
+      {
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "Deluxe Room",
+          "clampType": "floor",
+          "newValue": 208,
+          "startDate": "2025-12-18",
+          "endDate": "2026-01-01"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T06:18:58.926Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Minimum price of $208 set for Deluxe Room from 2025-12-18 to 2026-01-01",
+        "data": {
+          "timestamp": "2025-12-18T06:18:58.926Z",
+          "action": "adjustRateClamp",
+          "roomType": "Deluxe Room",
+          "clampType": "floor",
+          "newValue": 208,
+          "startDate": "2025-12-18",
+          "endDate": "2026-01-01",
+          "status": "applied"
+        },
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "Deluxe Room",
+          "clampType": "floor",
+          "newValue": 208,
+          "startDate": "2025-12-18",
+          "endDate": "2026-01-01"
+        },
+        "timestamp": "2025-12-18T06:18:58.926Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T06:26:10.167Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "adjustRateClamp",
+    "approvals": [
+      {
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "Deluxe Room",
+          "clampType": "floor",
+          "newValue": 208,
+          "startDate": "2025-12-18",
+          "endDate": "2026-01-01"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T06:26:10.166Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Minimum price of $208 set for Deluxe Room from 2025-12-18 to 2026-01-01",
+        "data": {
+          "timestamp": "2025-12-18T06:26:10.166Z",
+          "action": "adjustRateClamp",
+          "roomType": "Deluxe Room",
+          "clampType": "floor",
+          "newValue": 208,
+          "startDate": "2025-12-18",
+          "endDate": "2026-01-01",
+          "status": "applied"
+        },
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "Deluxe Room",
+          "clampType": "floor",
+          "newValue": 208,
+          "startDate": "2025-12-18",
+          "endDate": "2026-01-01"
+        },
+        "timestamp": "2025-12-18T06:26:10.167Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T06:28:50.044Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "applyWeekendRateIncrease",
+    "approvals": [
+      {
+        "actionName": "applyWeekendRateIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 5,
+          "scope": "weekend"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T06:28:50.044Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Raised weekend rates by 5% for Executive Suite & Premium Suite",
+        "data": [
+          {
+            "roomType": "Executive Suite",
+            "scope": "weekend",
+            "oldPrice": 329,
+            "newPrice": 345,
+            "percentage": 5
+          },
+          {
+            "roomType": "Premium Suite",
+            "scope": "weekend",
+            "oldPrice": 459,
+            "newPrice": 482,
+            "percentage": 5
+          }
+        ],
+        "actionName": "applyWeekendRateIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 5,
+          "scope": "weekend"
+        },
+        "timestamp": "2025-12-18T06:28:50.044Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T06:36:14.625Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "applyWeekendRateIncrease",
+    "approvals": [
+      {
+        "actionName": "applyWeekendRateIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Premium Suite",
+            "Executive Suite"
+          ],
+          "percentage": 5,
+          "scope": "all"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T06:36:14.625Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Raised all rates by 5% for Premium Suite & Executive Suite",
+        "data": [
+          {
+            "roomType": "Premium Suite",
+            "scope": "all",
+            "oldPrice": 459,
+            "newPrice": 482,
+            "percentage": 5
+          },
+          {
+            "roomType": "Executive Suite",
+            "scope": "all",
+            "oldPrice": 329,
+            "newPrice": 345,
+            "percentage": 5
+          }
+        ],
+        "actionName": "applyWeekendRateIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Premium Suite",
+            "Executive Suite"
+          ],
+          "percentage": 5,
+          "scope": "all"
+        },
+        "timestamp": "2025-12-18T06:36:14.625Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T07:20:13.303Z",
+    "operator": "system@hotel.com",
+    "prompt": "increase premium suite prices by 2%",
+    "intent": "auto-execute:increase",
+    "approvals": [
+      {
+        "actionName": "applyWeekendRateIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Premium Suite"
+          ],
+          "percentage": 2,
+          "scope": "all"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T07:20:13.303Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Raised all rates by 2% for Premium Suite",
+        "data": [
+          {
+            "roomType": "Premium Suite",
+            "scope": "all",
+            "oldPrice": 459,
+            "newPrice": 468,
+            "percentage": 2
+          }
+        ],
+        "actionName": "applyWeekendRateIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Premium Suite"
+          ],
+          "percentage": 2,
+          "scope": "all"
+        },
+        "timestamp": "2025-12-18T07:20:13.303Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T07:22:15.110Z",
+    "operator": "system@hotel.com",
+    "prompt": "Increase Executive Suite by 3%",
+    "intent": "auto-execute:increase",
+    "approvals": [
+      {
+        "actionName": "applyWeekendRateIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite"
+          ],
+          "percentage": 3,
+          "scope": "all"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T07:22:15.110Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Raised all rates by 3% for Executive Suite",
+        "data": [
+          {
+            "roomType": "Executive Suite",
+            "scope": "all",
+            "oldPrice": 329,
+            "newPrice": 339,
+            "percentage": 3
+          }
+        ],
+        "actionName": "applyWeekendRateIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite"
+          ],
+          "percentage": 3,
+          "scope": "all"
+        },
+        "timestamp": "2025-12-18T07:22:15.110Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T15:07:59.036Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 2
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T15:07:59.036Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Price cannot be below $50 minimum floor",
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 2
+        },
+        "timestamp": "2025-12-18T15:07:59.036Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T15:12:33.359Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 2
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T15:12:33.359Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Price cannot be below $50 minimum floor",
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 2
+        },
+        "timestamp": "2025-12-18T15:12:33.359Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T17:43:48.243Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved price increase",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 6,
+          "scope": "all days"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T17:43:48.243Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "✅ Price increase applied successfully!\n\nChanged rates by 6% for Executive Suite & Premium Suite:\n• Executive Suite: $329 → $349\n• Premium Suite: $459 → $487\n\nScope: all days\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 6%",
+        "data": [
+          {
+            "roomType": "Executive Suite",
+            "scope": "all days",
+            "oldPrice": 329,
+            "newPrice": 349,
+            "percentage": 6
+          },
+          {
+            "roomType": "Premium Suite",
+            "scope": "all days",
+            "oldPrice": 459,
+            "newPrice": 487,
+            "percentage": 6
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 6,
+          "scope": "all days"
+        },
+        "timestamp": "2025-12-18T17:43:48.243Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T18:53:31.598Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 150
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T18:53:31.598Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $150 applied for standard on 2025-12-18",
+        "data": {
+          "timestamp": "2025-12-18T18:53:31.598Z",
+          "action": "applyPriceOverride",
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 150,
+          "status": "applied",
+          "updatedMainDb": true
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 150
+        },
+        "timestamp": "2025-12-18T18:53:31.598Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T18:56:15.679Z",
+    "operator": "admin@hotel.com",
+    "prompt": "Set pricing $20 below The Plaza Hotel",
+    "intent": "updateCompetitorDifferential",
+    "approvals": [
+      {
+        "actionName": "updateCompetitorDifferential",
+        "parameters": {
+          "competitorName": "The Plaza Hotel",
+          "newDifferential": -20
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T18:56:15.678Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Pricing set to $20 below The Plaza Hotel",
+        "data": {
+          "timestamp": "2025-12-18T18:56:15.678Z",
+          "action": "updateCompetitorDifferential",
+          "competitorName": "The Plaza Hotel",
+          "newDifferential": -20,
+          "strategy": "undercut",
+          "status": "applied"
+        },
+        "actionName": "updateCompetitorDifferential",
+        "parameters": {
+          "competitorName": "The Plaza Hotel",
+          "newDifferential": -20
+        },
+        "timestamp": "2025-12-18T18:56:15.678Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T18:56:38.246Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "deluxeroom",
+          "date": "2025-12-18",
+          "newPrice": 259
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T18:56:38.246Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $259 applied for deluxeroom on 2025-12-18",
+        "data": {
+          "timestamp": "2025-12-18T18:56:38.246Z",
+          "action": "applyPriceOverride",
+          "roomId": "deluxeroom",
+          "date": "2025-12-18",
+          "newPrice": 259,
+          "status": "applied"
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "deluxeroom",
+          "date": "2025-12-18",
+          "newPrice": 259
+        },
+        "timestamp": "2025-12-18T18:56:38.246Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T18:56:38.247Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "executivesuite",
+          "date": "2025-12-18",
+          "newPrice": 409
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T18:56:38.247Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $409 applied for executivesuite on 2025-12-18",
+        "data": {
+          "timestamp": "2025-12-18T18:56:38.247Z",
+          "action": "applyPriceOverride",
+          "roomId": "executivesuite",
+          "date": "2025-12-18",
+          "newPrice": 409,
+          "status": "applied"
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "executivesuite",
+          "date": "2025-12-18",
+          "newPrice": 409
+        },
+        "timestamp": "2025-12-18T18:56:38.247Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T18:56:38.247Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "premiumsuite",
+          "date": "2025-12-18",
+          "newPrice": 579
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T18:56:38.247Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $579 applied for premiumsuite on 2025-12-18",
+        "data": {
+          "timestamp": "2025-12-18T18:56:38.247Z",
+          "action": "applyPriceOverride",
+          "roomId": "premiumsuite",
+          "date": "2025-12-18",
+          "newPrice": 579,
+          "status": "applied"
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "premiumsuite",
+          "date": "2025-12-18",
+          "newPrice": 579
+        },
+        "timestamp": "2025-12-18T18:56:38.247Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T18:56:38.248Z",
+    "operator": "admin@hotel.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "presidentialsuite",
+          "date": "2025-12-18",
+          "newPrice": 979
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T18:56:38.248Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $979 applied for presidentialsuite on 2025-12-18",
+        "data": {
+          "timestamp": "2025-12-18T18:56:38.248Z",
+          "action": "applyPriceOverride",
+          "roomId": "presidentialsuite",
+          "date": "2025-12-18",
+          "newPrice": 979,
+          "status": "applied"
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "presidentialsuite",
+          "date": "2025-12-18",
+          "newPrice": 979
+        },
+        "timestamp": "2025-12-18T18:56:38.248Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T19:06:02.727Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "updateCompetitorDifferential",
+    "approvals": [
+      {
+        "actionName": "updateCompetitorDifferential",
+        "parameters": {
+          "competitorName": "plaza",
+          "newDifferential": -20
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T19:06:02.727Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Pricing set to $20 below The Plaza Hotel",
+        "data": {
+          "timestamp": "2025-12-18T19:06:02.726Z",
+          "action": "updateCompetitorDifferential",
+          "competitorName": "The Plaza Hotel",
+          "newDifferential": -20,
+          "strategy": "undercut",
+          "status": "applied"
+        },
+        "actionName": "updateCompetitorDifferential",
+        "parameters": {
+          "competitorName": "plaza",
+          "newDifferential": -20
+        },
+        "timestamp": "2025-12-18T19:06:02.727Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T20:34:21.207Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 1
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T20:34:21.207Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Price cannot be below $50 minimum floor",
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 1
+        },
+        "timestamp": "2025-12-18T20:34:21.207Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T20:38:21.920Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 1
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T20:38:21.920Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Price cannot be below $50 minimum floor",
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "standard",
+          "date": "2025-12-18",
+          "newPrice": 1
+        },
+        "timestamp": "2025-12-18T20:38:21.920Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T20:48:54.557Z",
+    "operator": "test@hotel.com",
+    "prompt": "Testing price increase",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Standard Room"
+          ],
+          "percentage": 10,
+          "scope": "all days"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T20:48:54.557Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "✅ Price increase applied successfully!\n\nChanged rates by 10% for Standard Room:\n• Standard Room: $150 → $165\n\nScope: all days\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 10%",
+        "data": [
+          {
+            "roomType": "Standard Room",
+            "scope": "all days",
+            "oldPrice": 150,
+            "newPrice": 165,
+            "percentage": 10
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Standard Room"
+          ],
+          "percentage": 10,
+          "scope": "all days"
+        },
+        "timestamp": "2025-12-18T20:48:54.557Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T20:49:21.061Z",
+    "operator": "test@hotel.com",
+    "prompt": "Testing 1-hour temporary promotion",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ],
+          "startDate": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)",
+          "endDate": "$(date -u -v+1H +%Y-%m-%dT%H:%M:%S.000Z)",
+          "reason": "1-hour 25% increase"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T20:49:21.061Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Invalid date format",
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ],
+          "startDate": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)",
+          "endDate": "$(date -u -v+1H +%Y-%m-%dT%H:%M:%S.000Z)",
+          "reason": "1-hour 25% increase"
+        },
+        "timestamp": "2025-12-18T20:49:21.061Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T20:49:50.575Z",
+    "operator": "test@hotel.com",
+    "prompt": "Testing 1-hour temporary promotion",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ],
+          "startDate": "2025-12-18T20:49:50.000Z",
+          "endDate": "2025-12-18T21:49:50.000Z",
+          "reason": "1-hour 25% increase flash sale"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T20:49:50.575Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Temporary pricing applied!\n\nDeluxe Room: $219 → $274\n\nActive from 2025-12-18T20:49:50.000Z to 2025-12-18T21:49:50.000Z\nPrices will automatically revert on 2025-12-18T21:49:50.000Z",
+        "data": {
+          "tempOfferId": "temp_1766090990563",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-18T21:49:50.000Z",
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ],
+          "startDate": "2025-12-18T20:49:50.000Z",
+          "endDate": "2025-12-18T21:49:50.000Z",
+          "reason": "1-hour 25% increase flash sale"
+        },
+        "timestamp": "2025-12-18T20:49:50.575Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T20:59:33.466Z",
+    "operator": "test@hotel.com",
+    "prompt": "Direct action: applyPriceIncrease",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite"
+          ],
+          "percentage": 8,
+          "scope": "all days"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T20:59:33.466Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price increase applied successfully.\n\nChanged rates by 8% for Executive Suite.\nExecutive Suite: $329 to $355\n\nScope: all days\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 8%.",
+        "data": [
+          {
+            "roomType": "Executive Suite",
+            "scope": "all days",
+            "oldPrice": 329,
+            "newPrice": 355,
+            "percentage": 8
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite"
+          ],
+          "percentage": 8,
+          "scope": "all days"
+        },
+        "timestamp": "2025-12-18T20:59:33.466Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T20:59:40.770Z",
+    "operator": "test@hotel.com",
+    "prompt": "Testing 1-hour temporary promotion",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ],
+          "startDate": "2025-12-18T20:59:40.000Z",
+          "endDate": "2025-12-18T21:59:40.000Z",
+          "reason": "1-hour 25% increase flash sale"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T20:59:40.770Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Deluxe Room is now $274 for the next 1 hour. The system will automatically revert it to $219 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766091580768",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-18T21:59:40.000Z",
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ],
+          "startDate": "2025-12-18T20:59:40.000Z",
+          "endDate": "2025-12-18T21:59:40.000Z",
+          "reason": "1-hour 25% increase flash sale"
+        },
+        "timestamp": "2025-12-18T20:59:40.770Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T20:59:46.731Z",
+    "operator": "test@hotel.com",
+    "prompt": "Testing 1-hour temporary promotion",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ],
+          "startDate": "2025-12-18T20:59:46.000Z",
+          "endDate": "2025-12-18T21:59:46.000Z",
+          "reason": "1-hour 25% increase flash sale"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T20:59:46.731Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Deluxe Room is now $274 for the next 1 hour. The system will automatically revert it to $219 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766091586729",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-18T21:59:46.000Z",
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 274
+            }
+          ],
+          "startDate": "2025-12-18T20:59:46.000Z",
+          "endDate": "2025-12-18T21:59:46.000Z",
+          "reason": "1-hour 25% increase flash sale"
+        },
+        "timestamp": "2025-12-18T20:59:46.731Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T21:01:41.600Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 6,
+          "scope": "all days"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T21:01:41.600Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price increase applied successfully.\n\nChanged rates by 6% for Executive Suite and Premium Suite.\nExecutive Suite: $355 to $376\nPremium Suite: $459 to $487\n\nScope: all days\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 6%.",
+        "data": [
+          {
+            "roomType": "Executive Suite",
+            "scope": "all days",
+            "oldPrice": 355,
+            "newPrice": 376,
+            "percentage": 6
+          },
+          {
+            "roomType": "Premium Suite",
+            "scope": "all days",
+            "oldPrice": 459,
+            "newPrice": 487,
+            "percentage": 6
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 6,
+          "scope": "all days"
+        },
+        "timestamp": "2025-12-18T21:01:41.600Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T21:03:23.900Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Standard Room",
+              "currentPrice": 165,
+              "newPrice": 132
+            }
+          ],
+          "startDate": "2025-12-18T21:03:05.530Z",
+          "endDate": "2025-12-19T21:03:05.530Z",
+          "reason": "1-day 20% discount"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T21:03:23.900Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Standard Room is now $132 for 1 day. The system will automatically revert it to $165 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766091803893",
+          "appliedOverrides": 2,
+          "revertDate": "2025-12-19T21:03:05.530Z",
+          "roomPricing": [
+            {
+              "roomType": "Standard Room",
+              "currentPrice": 165,
+              "newPrice": 132
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Standard Room",
+              "currentPrice": 165,
+              "newPrice": 132
+            }
+          ],
+          "startDate": "2025-12-18T21:03:05.530Z",
+          "endDate": "2025-12-19T21:03:05.530Z",
+          "reason": "1-day 20% discount"
+        },
+        "timestamp": "2025-12-18T21:03:23.900Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T21:04:39.868Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Standard Room",
+              "currentPrice": 165,
+              "newPrice": 165
+            }
+          ],
+          "startDate": "2025-12-18T21:04:24.834Z",
+          "endDate": "2025-12-18T23:04:24.834Z",
+          "reason": "2-hour"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T21:04:39.868Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Standard Room is now $165 for the next 2 hours. The system will automatically revert it to $165 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766091879864",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-18T23:04:24.834Z",
+          "roomPricing": [
+            {
+              "roomType": "Standard Room",
+              "currentPrice": 165,
+              "newPrice": 165
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Standard Room",
+              "currentPrice": 165,
+              "newPrice": 165
+            }
+          ],
+          "startDate": "2025-12-18T21:04:24.834Z",
+          "endDate": "2025-12-18T23:04:24.834Z",
+          "reason": "2-hour"
+        },
+        "timestamp": "2025-12-18T21:04:39.868Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T21:08:52.363Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 6,
+          "scope": "all days"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T21:08:52.363Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price increase applied successfully.\n\nChanged rates by 6% for Executive Suite and Premium Suite.\nExecutive Suite: $376 to $399\nPremium Suite: $487 to $516\n\nScope: all days\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 6%.",
+        "data": [
+          {
+            "roomType": "Executive Suite",
+            "scope": "all days",
+            "oldPrice": 376,
+            "newPrice": 399,
+            "percentage": 6
+          },
+          {
+            "roomType": "Premium Suite",
+            "scope": "all days",
+            "oldPrice": 487,
+            "newPrice": 516,
+            "percentage": 6
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 6,
+          "scope": "all days"
+        },
+        "timestamp": "2025-12-18T21:08:52.363Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T21:29:58.544Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Premium Suite",
+              "currentPrice": 516,
+              "newPrice": 593
+            }
+          ],
+          "startDate": "2025-12-18T21:29:48.652Z",
+          "endDate": "2025-12-18T23:29:48.652Z",
+          "reason": "2-hour 15% increase"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T21:29:58.544Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Premium Suite is now $593 for the next 2 hours. The system will automatically revert it to $516 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766093398539",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-18T23:29:48.652Z",
+          "roomPricing": [
+            {
+              "roomType": "Premium Suite",
+              "currentPrice": 516,
+              "newPrice": 593
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Premium Suite",
+              "currentPrice": 516,
+              "newPrice": 593
+            }
+          ],
+          "startDate": "2025-12-18T21:29:48.652Z",
+          "endDate": "2025-12-18T23:29:48.652Z",
+          "reason": "2-hour 15% increase"
+        },
+        "timestamp": "2025-12-18T21:29:58.544Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T21:31:27.735Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "operatorName": "User",
+    "prompt": "Conversational approval: give Can you  analyze my bookings and suggest offers?",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Premium Suite",
+              "currentPrice": 516,
+              "newPrice": 593
+            }
+          ],
+          "startDate": "2025-12-18T21:29:48.652Z",
+          "endDate": "2025-12-18T23:29:48.652Z",
+          "reason": "2-hour 15% increase"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T21:31:27.735Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Premium Suite is now $593 for the next 2 hours. The system will automatically revert it to $516 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766093487724",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-18T23:29:48.652Z",
+          "roomPricing": [
+            {
+              "roomType": "Premium Suite",
+              "currentPrice": 516,
+              "newPrice": 593
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Premium Suite",
+              "currentPrice": 516,
+              "newPrice": 593
+            }
+          ],
+          "startDate": "2025-12-18T21:29:48.652Z",
+          "endDate": "2025-12-18T23:29:48.652Z",
+          "reason": "2-hour 15% increase"
+        },
+        "timestamp": "2025-12-18T21:31:27.735Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T21:31:40.745Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "operatorName": "User",
+    "prompt": "Conversational approval: Can you analyze my bookings and suggest offers?",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Premium Suite",
+              "currentPrice": 516,
+              "newPrice": 593
+            }
+          ],
+          "startDate": "2025-12-18T21:29:48.652Z",
+          "endDate": "2025-12-18T23:29:48.652Z",
+          "reason": "2-hour 15% increase"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T21:31:40.745Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Premium Suite is now $593 for the next 2 hours. The system will automatically revert it to $516 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766093500739",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-18T23:29:48.652Z",
+          "roomPricing": [
+            {
+              "roomType": "Premium Suite",
+              "currentPrice": 516,
+              "newPrice": 593
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Premium Suite",
+              "currentPrice": 516,
+              "newPrice": 593
+            }
+          ],
+          "startDate": "2025-12-18T21:29:48.652Z",
+          "endDate": "2025-12-18T23:29:48.652Z",
+          "reason": "2-hour 15% increase"
+        },
+        "timestamp": "2025-12-18T21:31:40.745Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T21:34:41.607Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 219
+            }
+          ],
+          "startDate": "2025-12-18T21:34:23.969Z",
+          "endDate": "2025-12-25T21:34:23.969Z",
+          "reason": "1-week"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T21:34:41.607Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Deluxe Room is now $219 for 7 days. The system will automatically revert it to $219 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766093681595",
+          "appliedOverrides": 8,
+          "revertDate": "2025-12-25T21:34:23.969Z",
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 219
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 219
+            }
+          ],
+          "startDate": "2025-12-18T21:34:23.969Z",
+          "endDate": "2025-12-25T21:34:23.969Z",
+          "reason": "1-week"
+        },
+        "timestamp": "2025-12-18T21:34:41.607Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T21:36:18.653Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 219
+            }
+          ],
+          "startDate": "2025-12-18T21:36:02.869Z",
+          "endDate": "2025-12-18T22:36:02.869Z",
+          "reason": "1-hour promotion"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T21:36:18.653Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Deluxe Room is now $219 for the next 1 hour. The system will automatically revert it to $219 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766093778650",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-18T22:36:02.869Z",
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 219
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Deluxe Room",
+              "currentPrice": 219,
+              "newPrice": 219
+            }
+          ],
+          "startDate": "2025-12-18T21:36:02.869Z",
+          "endDate": "2025-12-18T22:36:02.869Z",
+          "reason": "1-hour promotion"
+        },
+        "timestamp": "2025-12-18T21:36:18.653Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-18T22:21:25.074Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "operatorName": "Dhana P",
+    "prompt": "Conversational approval: explain more about the execute suite on holiday season outcome and estimation",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Presidential Suite",
+              "currentPrice": 799,
+              "newPrice": 799
+            }
+          ],
+          "startDate": "2025-12-18T22:17:18.796Z",
+          "endDate": "2025-12-25T22:17:18.796Z",
+          "reason": "1-week"
+        },
+        "approved": true,
+        "timestamp": "2025-12-18T22:21:25.074Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Presidential Suite is now $799 for 7 days. The system will automatically revert it to $799 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766096485057",
+          "appliedOverrides": 8,
+          "revertDate": "2025-12-25T22:17:18.796Z",
+          "roomPricing": [
+            {
+              "roomType": "Presidential Suite",
+              "currentPrice": 799,
+              "newPrice": 799
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Presidential Suite",
+              "currentPrice": 799,
+              "newPrice": 799
+            }
+          ],
+          "startDate": "2025-12-18T22:17:18.796Z",
+          "endDate": "2025-12-25T22:17:18.796Z",
+          "reason": "1-week"
+        },
+        "timestamp": "2025-12-18T22:21:25.074Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T00:33:52.625Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 6,
+          "scope": "all days"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T00:33:52.625Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price increase applied successfully.\n\nChanged rates by 6% for Executive Suite and Premium Suite.\nExecutive Suite: $399 to $423\nPremium Suite: $516 to $547\n\nScope: all days\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 6%.",
+        "data": [
+          {
+            "roomType": "Executive Suite",
+            "scope": "all days",
+            "oldPrice": 399,
+            "newPrice": 423,
+            "percentage": 6
+          },
+          {
+            "roomType": "Premium Suite",
+            "scope": "all days",
+            "oldPrice": 516,
+            "newPrice": 547,
+            "percentage": 6
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 6,
+          "scope": "all days"
+        },
+        "timestamp": "2025-12-19T00:33:52.625Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T00:34:35.824Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "operatorName": "User",
+    "prompt": "Conversational approval: okay now undo the action on 50$ to original pirce",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 6,
+          "scope": "all days"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T00:34:35.824Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price increase applied successfully.\n\nChanged rates by 6% for Executive Suite and Premium Suite.\nExecutive Suite: $423 to $448\nPremium Suite: $547 to $580\n\nScope: all days\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 6%.",
+        "data": [
+          {
+            "roomType": "Executive Suite",
+            "scope": "all days",
+            "oldPrice": 423,
+            "newPrice": 448,
+            "percentage": 6
+          },
+          {
+            "roomType": "Premium Suite",
+            "scope": "all days",
+            "oldPrice": 547,
+            "newPrice": 580,
+            "percentage": 6
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Executive Suite",
+            "Premium Suite"
+          ],
+          "percentage": 6,
+          "scope": "all days"
+        },
+        "timestamp": "2025-12-19T00:34:35.824Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T00:35:17.556Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Standard Room",
+              "currentPrice": 165,
+              "newPrice": 165,
+              "reason": "Promotional offer suggested by AI"
+            }
+          ],
+          "startDate": "2025-12-19T00:34:59.330Z",
+          "endDate": "2026-01-18T00:34:59.330Z",
+          "reason": "AI-suggested promotion"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T00:35:17.556Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Standard Room is now $165 for 30 days. The system will automatically revert it to $165 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766104517539",
+          "appliedOverrides": 31,
+          "revertDate": "2026-01-18T00:34:59.330Z",
+          "roomPricing": [
+            {
+              "roomType": "Standard Room",
+              "currentPrice": 165,
+              "newPrice": 165,
+              "reason": "Promotional offer suggested by AI"
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Standard Room",
+              "currentPrice": 165,
+              "newPrice": 165,
+              "reason": "Promotional offer suggested by AI"
+            }
+          ],
+          "startDate": "2025-12-19T00:34:59.330Z",
+          "endDate": "2026-01-18T00:34:59.330Z",
+          "reason": "AI-suggested promotion"
+        },
+        "timestamp": "2025-12-19T00:35:17.556Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T04:53:19.829Z",
+    "operator": "unknown",
+    "prompt": "Direct action: applyPriceOverride",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "bernard",
+          "date": "2025-12-20",
+          "newPrice": 200
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T04:53:19.829Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $200 applied for bernard on 2025-12-20",
+        "data": {
+          "timestamp": "2025-12-19T04:53:19.829Z",
+          "action": "applyPriceOverride",
+          "roomId": "bernard",
+          "date": "2025-12-20",
+          "newPrice": 200,
+          "status": "applied",
+          "updatedMainDb": true
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "bernard",
+          "date": "2025-12-20",
+          "newPrice": 200
+        },
+        "timestamp": "2025-12-19T04:53:19.829Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T04:59:21.919Z",
+    "operator": "unknown",
+    "prompt": "Direct action: applyPriceOverride",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "LaRua",
+          "date": "2025-12-18",
+          "newPrice": 185,
+          "reason": "Test price increase"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T04:59:21.919Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $185 applied for LaRua on 2025-12-18",
+        "data": {
+          "timestamp": "2025-12-19T04:59:21.919Z",
+          "action": "applyPriceOverride",
+          "roomId": "LaRua",
+          "date": "2025-12-18",
+          "newPrice": 185,
+          "status": "applied",
+          "updatedMainDb": true
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "LaRua",
+          "date": "2025-12-18",
+          "newPrice": 185,
+          "reason": "Test price increase"
+        },
+        "timestamp": "2025-12-19T04:59:21.919Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T05:00:28.415Z",
+    "operator": "unknown",
+    "prompt": "Direct action: applyPriceOverride",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "Santiago",
+          "date": "2025-12-19",
+          "newPrice": 199,
+          "reason": "Weekend premium"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T05:00:28.415Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $199 applied for Santiago on 2025-12-19",
+        "data": {
+          "timestamp": "2025-12-19T05:00:28.415Z",
+          "action": "applyPriceOverride",
+          "roomId": "Santiago",
+          "date": "2025-12-19",
+          "newPrice": 199,
+          "status": "applied",
+          "updatedMainDb": true
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "Santiago",
+          "date": "2025-12-19",
+          "newPrice": 199,
+          "reason": "Weekend premium"
+        },
+        "timestamp": "2025-12-19T05:00:28.415Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T05:01:05.723Z",
+    "operator": "unknown",
+    "prompt": "Direct action: adjustRateClamp",
+    "intent": "adjustRateClamp",
+    "approvals": [
+      {
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "Pilar",
+          "clampType": "floor",
+          "newValue": 200,
+          "startDate": "2025-12-19",
+          "endDate": "2025-12-25"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T05:01:05.723Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Minimum price of $200 set for Pilar from 2025-12-19 to 2025-12-25",
+        "data": {
+          "timestamp": "2025-12-19T05:01:05.723Z",
+          "action": "adjustRateClamp",
+          "roomType": "Pilar",
+          "clampType": "floor",
+          "newValue": 200,
+          "startDate": "2025-12-19",
+          "endDate": "2025-12-25",
+          "status": "applied"
+        },
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "Pilar",
+          "clampType": "floor",
+          "newValue": 200,
+          "startDate": "2025-12-19",
+          "endDate": "2025-12-25"
+        },
+        "timestamp": "2025-12-19T05:01:05.723Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T05:27:13.312Z",
+    "operator": "system@hotel.com",
+    "operatorName": "System User",
+    "prompt": "Conversational approval: yes apply it",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "larua",
+          "date": "2025-12-19",
+          "newPrice": 220
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T05:27:13.312Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $220 applied for larua on 2025-12-19",
+        "data": {
+          "timestamp": "2025-12-19T05:27:13.312Z",
+          "action": "applyPriceOverride",
+          "roomId": "larua",
+          "date": "2025-12-19",
+          "newPrice": 220,
+          "status": "applied",
+          "updatedMainDb": true
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "larua",
+          "date": "2025-12-19",
+          "newPrice": 220
+        },
+        "timestamp": "2025-12-19T05:27:13.312Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T05:33:28.405Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "larua",
+          "date": "2025-12-19",
+          "newPrice": 200
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T05:33:28.405Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $200 applied for larua on 2025-12-19",
+        "data": {
+          "timestamp": "2025-12-19T05:33:28.405Z",
+          "action": "applyPriceOverride",
+          "roomId": "larua",
+          "date": "2025-12-19",
+          "newPrice": 200,
+          "status": "applied",
+          "updatedMainDb": true
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "larua",
+          "date": "2025-12-19",
+          "newPrice": 200
+        },
+        "timestamp": "2025-12-19T05:33:28.405Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T14:26:24.854Z",
+    "operator": "dhanaparupudi1@gmai.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "pilar",
+          "date": "2025-12-19",
+          "newPrice": 50
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T14:26:24.854Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $50 applied for pilar on 2025-12-19",
+        "data": {
+          "timestamp": "2025-12-19T14:26:24.853Z",
+          "action": "applyPriceOverride",
+          "roomId": "pilar",
+          "date": "2025-12-19",
+          "newPrice": 50,
+          "status": "applied",
+          "updatedMainDb": true
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "pilar",
+          "date": "2025-12-19",
+          "newPrice": 50
+        },
+        "timestamp": "2025-12-19T14:26:24.854Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T14:47:08.242Z",
+    "operator": "dhanaparupudi1@gmai.com",
+    "operatorName": "User",
+    "prompt": "Conversational approval: yes would like to proceed with Flash Sale to correct pricing promotion for Pilar rrom",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "pilar",
+          "date": "2025-12-19",
+          "newPrice": 50
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T14:47:08.242Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $50 applied for pilar on 2025-12-19",
+        "data": {
+          "timestamp": "2025-12-19T14:47:08.241Z",
+          "action": "applyPriceOverride",
+          "roomId": "pilar",
+          "date": "2025-12-19",
+          "newPrice": 50,
+          "status": "applied",
+          "updatedMainDb": true
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "pilar",
+          "date": "2025-12-19",
+          "newPrice": 50
+        },
+        "timestamp": "2025-12-19T14:47:08.242Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T14:50:30.724Z",
+    "operator": "dhanaparupudi1@gmai.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "mariana",
+          "date": "2025-12-20",
+          "newPrice": 5
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T14:50:30.724Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Price cannot be below $50 minimum floor",
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "mariana",
+          "date": "2025-12-20",
+          "newPrice": 5
+        },
+        "timestamp": "2025-12-19T14:50:30.724Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T16:15:59.270Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "operatorName": "Dhana p",
+    "prompt": "Conversational approval: yes proceed with implementing limited time discount for 2 weeks on Mariana room",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 223
+            }
+          ],
+          "startDate": "2025-12-19T16:13:47.045Z",
+          "endDate": "2025-12-19T17:13:47.045Z",
+          "reason": "1-hour promotion"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T16:15:59.270Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Mariana is now $223 for the next 1 hour. The system will automatically revert it to $223 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766160959259",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-19T17:13:47.045Z",
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 223
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 223
+            }
+          ],
+          "startDate": "2025-12-19T16:13:47.045Z",
+          "endDate": "2025-12-19T17:13:47.045Z",
+          "reason": "1-hour promotion"
+        },
+        "timestamp": "2025-12-19T16:15:59.270Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T16:26:21.044Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyPriceOverride",
+    "approvals": [
+      {
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "pilar",
+          "date": "2025-12-20",
+          "newPrice": 50
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T16:26:21.044Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price override of $50 applied for pilar on 2025-12-20",
+        "data": {
+          "timestamp": "2025-12-19T16:26:21.043Z",
+          "action": "applyPriceOverride",
+          "roomId": "pilar",
+          "date": "2025-12-20",
+          "newPrice": 50,
+          "status": "applied",
+          "updatedMainDb": true
+        },
+        "actionName": "applyPriceOverride",
+        "parameters": {
+          "roomId": "pilar",
+          "date": "2025-12-20",
+          "newPrice": 50
+        },
+        "timestamp": "2025-12-19T16:26:21.044Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T16:30:19.142Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 223
+            }
+          ],
+          "startDate": "2025-12-19T16:29:39.163Z",
+          "endDate": "2025-12-26T16:29:39.163Z",
+          "reason": "1-week"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T16:30:19.142Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Mariana is now $223 for 7 days. The system will automatically revert it to $223 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766161819125",
+          "appliedOverrides": 8,
+          "revertDate": "2025-12-26T16:29:39.163Z",
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 223
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 223
+            }
+          ],
+          "startDate": "2025-12-19T16:29:39.163Z",
+          "endDate": "2025-12-26T16:29:39.163Z",
+          "reason": "1-week"
+        },
+        "timestamp": "2025-12-19T16:30:19.142Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T16:55:20.325Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Bernard",
+              "currentPrice": 171,
+              "newPrice": 171
+            }
+          ],
+          "startDate": "2025-12-19T16:55:03.987Z",
+          "endDate": "2025-12-19T22:55:03.987Z",
+          "reason": "6-hour"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T16:55:20.325Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Bernard is now $171 for the next 6 hours. The system will automatically revert it to $171 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766163320292",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-19T22:55:03.987Z",
+          "roomPricing": [
+            {
+              "roomType": "Bernard",
+              "currentPrice": 171,
+              "newPrice": 171
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Bernard",
+              "currentPrice": 171,
+              "newPrice": 171
+            }
+          ],
+          "startDate": "2025-12-19T16:55:03.987Z",
+          "endDate": "2025-12-19T22:55:03.987Z",
+          "reason": "6-hour"
+        },
+        "timestamp": "2025-12-19T16:55:20.325Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T17:58:49.587Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "prompt": "User approved action",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 245
+            }
+          ],
+          "startDate": "2025-12-19T17:58:23.970Z",
+          "endDate": "2025-12-19T19:58:23.970Z",
+          "reason": "2-hour 10% increase"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T17:58:49.587Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Mariana is now $245 for the next 2 hours. The system will automatically revert it to $223 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766167129578",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-19T19:58:23.970Z",
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 245
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 245
+            }
+          ],
+          "startDate": "2025-12-19T17:58:23.970Z",
+          "endDate": "2025-12-19T19:58:23.970Z",
+          "reason": "2-hour 10% increase"
+        },
+        "timestamp": "2025-12-19T17:58:49.587Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-19T18:03:11.890Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "operatorName": "dhana P",
+    "prompt": "Conversational approval: Yes I would like to proceed with Loyalty program offer on Mariana room",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 245
+            }
+          ],
+          "startDate": "2025-12-19T17:58:23.970Z",
+          "endDate": "2025-12-19T19:58:23.970Z",
+          "reason": "2-hour 10% increase"
+        },
+        "approved": true,
+        "timestamp": "2025-12-19T18:03:11.890Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. Mariana is now $245 for the next 2 hours. The system will automatically revert it to $223 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766167391882",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-19T19:58:23.970Z",
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 245
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 245
+            }
+          ],
+          "startDate": "2025-12-19T17:58:23.970Z",
+          "endDate": "2025-12-19T19:58:23.970Z",
+          "reason": "2-hour 10% increase"
+        },
+        "timestamp": "2025-12-19T18:03:11.890Z"
+      }
+    ]
+  },
+  {
+    "time": "2025-12-23T20:59:48.893Z",
+    "operator": "test-user",
+    "operatorName": "Test User",
+    "prompt": "Increase LaRua price by 10%",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "LaRua"
+          ],
+          "percentage": 10,
+          "scope": "all"
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T20:59:48.893Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price increase applied successfully.\n\nChanged rates by 10% for LaRua.\nLaRua: $153 to $168\n\nScope: all\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 10%.",
+        "data": [
+          {
+            "roomType": "LaRua",
+            "scope": "all",
+            "oldPrice": 153,
+            "newPrice": 168,
+            "percentage": 10
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "LaRua"
+          ],
+          "percentage": 10,
+          "scope": "all"
+        },
+        "timestamp": "2025-12-23T20:59:48.893Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T21:01:15.238Z",
+    "operator": "test-user",
+    "operatorName": "Test User",
+    "prompt": "Decrease Bernard price by 15%",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Bernard"
+          ],
+          "percentage": -15,
+          "scope": "all"
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T21:01:15.238Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Percentage must be between 1 and 50",
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Bernard"
+          ],
+          "percentage": -15,
+          "scope": "all"
+        },
+        "timestamp": "2025-12-23T21:01:15.238Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T21:02:20.658Z",
+    "operator": "test-user",
+    "operatorName": "Test User",
+    "prompt": "Decrease Bernard price by 15%",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Bernard"
+          ],
+          "percentage": -15,
+          "scope": "all"
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T21:02:20.658Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Percentage must be between 1 and 50",
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Bernard"
+          ],
+          "percentage": -15,
+          "scope": "all"
+        },
+        "timestamp": "2025-12-23T21:02:20.658Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T21:03:43.011Z",
+    "operator": "test-user",
+    "operatorName": "Test User",
+    "prompt": "Decrease Bernard price by 15%",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Bernard"
+          ],
+          "percentage": -15,
+          "scope": "all"
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T21:03:43.011Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price decrease applied successfully.\n\nChanged rates by -15% for Bernard.\nBernard: $171 → $145\n\nScope: all\nExpected impact: Boost occupancy by lowering prices by approximately 15%.",
+        "data": [
+          {
+            "roomType": "Bernard",
+            "scope": "all",
+            "oldPrice": 171,
+            "newPrice": 145,
+            "percentage": -15
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Bernard"
+          ],
+          "percentage": -15,
+          "scope": "all"
+        },
+        "timestamp": "2025-12-23T21:03:43.011Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T21:05:30.719Z",
+    "operator": "test",
+    "operatorName": "test",
+    "prompt": "test",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Santiago"
+          ],
+          "percentage": 20,
+          "scope": "all"
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T21:05:30.719Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price increase applied successfully.\n\nChanged rates by +20% for Santiago.\nSantiago: $178 → $214\n\nScope: all\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 20%.",
+        "data": [
+          {
+            "roomType": "Santiago",
+            "scope": "all",
+            "oldPrice": 178,
+            "newPrice": 214,
+            "percentage": 20
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Santiago"
+          ],
+          "percentage": 20,
+          "scope": "all"
+        },
+        "timestamp": "2025-12-23T21:05:30.719Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T21:05:49.506Z",
+    "operator": "test",
+    "operatorName": "test",
+    "prompt": "test",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Pilar"
+          ],
+          "percentage": 10,
+          "scope": "all"
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T21:05:49.506Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price increase applied successfully.\n\nChanged rates by +10% for Pilar.\nPilar: $189 → $208\n\nScope: all\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 10%.",
+        "data": [
+          {
+            "roomType": "Pilar",
+            "scope": "all",
+            "oldPrice": 189,
+            "newPrice": 208,
+            "percentage": 10
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Pilar"
+          ],
+          "percentage": 10,
+          "scope": "all"
+        },
+        "timestamp": "2025-12-23T21:05:49.506Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T21:28:48.621Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "operatorName": "User",
+    "prompt": "User approved action",
+    "intent": "adjustRateClamp",
+    "approvals": [
+      {
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "LaRua",
+          "clampType": "floor",
+          "newValue": 130,
+          "startDate": "2025-12-23",
+          "endDate": "2025-12-30"
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T21:28:48.621Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Minimum price of $130 set for LaRua from 2025-12-23 to 2025-12-30",
+        "data": {
+          "timestamp": "2025-12-23T21:28:48.621Z",
+          "action": "adjustRateClamp",
+          "roomType": "LaRua",
+          "clampType": "floor",
+          "newValue": 130,
+          "startDate": "2025-12-23",
+          "endDate": "2025-12-30",
+          "status": "applied"
+        },
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "LaRua",
+          "clampType": "floor",
+          "newValue": 130,
+          "startDate": "2025-12-23",
+          "endDate": "2025-12-30"
+        },
+        "timestamp": "2025-12-23T21:28:48.621Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T21:37:55.478Z",
+    "operator": "test@hotel.com",
+    "operatorName": "Test User",
+    "prompt": "Direct action: applyPriceIncrease",
+    "intent": "applyPriceIncrease",
+    "approvals": [
+      {
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Bernard"
+          ],
+          "percentage": 5,
+          "scope": "all"
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T21:37:55.478Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Price increase applied successfully.\n\nChanged rates by +5% for Bernard.\nBernard: $171 → $180\n\nScope: all\nExpected impact: Maintain current occupancy levels while increasing revenue by approximately 5%.",
+        "data": [
+          {
+            "roomType": "Bernard",
+            "scope": "all",
+            "oldPrice": 171,
+            "newPrice": 180,
+            "percentage": 5
+          }
+        ],
+        "actionName": "applyPriceIncrease",
+        "parameters": {
+          "roomTypes": [
+            "Bernard"
+          ],
+          "percentage": 5,
+          "scope": "all"
+        },
+        "timestamp": "2025-12-23T21:37:55.478Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T21:38:05.316Z",
+    "operator": "test@hotel.com",
+    "operatorName": "Test User",
+    "prompt": "Direct action: adjustRateClamp",
+    "intent": "adjustRateClamp",
+    "approvals": [
+      {
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "LaRua",
+          "clampType": "floor",
+          "newValue": 120,
+          "startDate": "2025-12-23",
+          "endDate": "2025-12-30"
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T21:38:05.316Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Minimum price of $120 set for LaRua from 2025-12-23 to 2025-12-30",
+        "data": {
+          "timestamp": "2025-12-23T21:38:05.316Z",
+          "action": "adjustRateClamp",
+          "roomType": "LaRua",
+          "clampType": "floor",
+          "newValue": 120,
+          "startDate": "2025-12-23",
+          "endDate": "2025-12-30",
+          "status": "applied"
+        },
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "LaRua",
+          "clampType": "floor",
+          "newValue": 120,
+          "startDate": "2025-12-23",
+          "endDate": "2025-12-30"
+        },
+        "timestamp": "2025-12-23T21:38:05.316Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T21:40:13.236Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "operatorName": "User",
+    "prompt": "User approved action",
+    "intent": "adjustRateClamp",
+    "approvals": [
+      {
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "LaRua",
+          "clampType": "floor",
+          "newValue": 130,
+          "startDate": "2025-12-23",
+          "endDate": "2025-12-30"
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T21:40:13.236Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Minimum price of $130 set for LaRua from 2025-12-23 to 2025-12-30",
+        "data": {
+          "timestamp": "2025-12-23T21:40:13.236Z",
+          "action": "adjustRateClamp",
+          "roomType": "LaRua",
+          "clampType": "floor",
+          "newValue": 130,
+          "startDate": "2025-12-23",
+          "endDate": "2025-12-30",
+          "status": "applied"
+        },
+        "actionName": "adjustRateClamp",
+        "parameters": {
+          "roomType": "LaRua",
+          "clampType": "floor",
+          "newValue": 130,
+          "startDate": "2025-12-23",
+          "endDate": "2025-12-30"
+        },
+        "timestamp": "2025-12-23T21:40:13.236Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T22:11:32.633Z",
+    "operator": "test@hotel.com",
+    "operatorName": "test@hotel.com",
+    "prompt": "Direct action: applyMultiplePromotions",
+    "intent": "applyMultiplePromotions",
+    "approvals": [
+      {
+        "actionName": "applyMultiplePromotions",
+        "parameters": {
+          "promotions": [
+            {
+              "roomType": "Santiago",
+              "currentPrice": 178,
+              "newPrice": 160,
+              "percentage": -10,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "Bernard",
+              "currentPrice": 171,
+              "newPrice": 145,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "LaRua",
+              "currentPrice": 153,
+              "newPrice": 130,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            }
+          ]
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T22:11:32.633Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": false,
+        "message": "Failed to apply any promotions",
+        "actionName": "applyMultiplePromotions",
+        "parameters": {
+          "promotions": [
+            {
+              "roomType": "Santiago",
+              "currentPrice": 178,
+              "newPrice": 160,
+              "percentage": -10,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "Bernard",
+              "currentPrice": 171,
+              "newPrice": 145,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "LaRua",
+              "currentPrice": 153,
+              "newPrice": 130,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            }
+          ]
+        },
+        "timestamp": "2025-12-23T22:11:32.633Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T22:12:47.706Z",
+    "operator": "test@hotel.com",
+    "operatorName": "test@hotel.com",
+    "prompt": "Direct action: applyMultiplePromotions",
+    "intent": "applyMultiplePromotions",
+    "approvals": [
+      {
+        "actionName": "applyMultiplePromotions",
+        "parameters": {
+          "promotions": [
+            {
+              "roomType": "Santiago",
+              "currentPrice": 178,
+              "newPrice": 160,
+              "percentage": -10,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "Bernard",
+              "currentPrice": 171,
+              "newPrice": 145,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            }
+          ]
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T22:12:47.706Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Applied 2 promotional strategies:\n\n1. Santiago: $178 → $160 (-10%)\n   Type: flash sale\n   30-Day Revenue Impact: $-2700\n\n2. Bernard: $171 → $145 (-15%)\n   Type: flash sale\n   30-Day Revenue Impact: $-3120\n\n--- Total Impact ---\nTotal 30-Day Revenue Change: $-5820\n",
+        "data": {
+          "applied": [
+            {
+              "roomType": "Santiago",
+              "oldPrice": 178,
+              "newPrice": 160,
+              "percentage": -10,
+              "promotionType": "flash_sale",
+              "revenueImpact": -2700,
+              "status": "applied"
+            },
+            {
+              "roomType": "Bernard",
+              "oldPrice": 171,
+              "newPrice": 145,
+              "percentage": -15,
+              "promotionType": "flash_sale",
+              "revenueImpact": -3120,
+              "status": "applied"
+            }
+          ],
+          "errors": [],
+          "totalRevenueImpact": -5820,
+          "appliedCount": 2,
+          "errorCount": 0
+        },
+        "actionName": "applyMultiplePromotions",
+        "parameters": {
+          "promotions": [
+            {
+              "roomType": "Santiago",
+              "currentPrice": 178,
+              "newPrice": 160,
+              "percentage": -10,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "Bernard",
+              "currentPrice": 171,
+              "newPrice": 145,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            }
+          ]
+        },
+        "timestamp": "2025-12-23T22:12:47.706Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-23T23:28:49.022Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "operatorName": "User",
+    "prompt": "User approved action",
+    "intent": "applyMultiplePromotions",
+    "approvals": [
+      {
+        "actionName": "applyMultiplePromotions",
+        "parameters": {
+          "promotions": [
+            {
+              "roomType": "Santiago",
+              "currentPrice": 178,
+              "newPrice": 160,
+              "percentage": -10,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "Bernard",
+              "currentPrice": 171,
+              "newPrice": 145,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 190,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "LaRua",
+              "currentPrice": 153,
+              "newPrice": 130,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "Pilar",
+              "currentPrice": 189,
+              "newPrice": 161,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            }
+          ],
+          "applyAll": true
+        },
+        "approved": true,
+        "timestamp": "2025-12-23T23:28:49.022Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Applied 5 promotional strategies:\n\n1. Santiago: $178 → $160 (-10%)\n   Type: flash sale\n   30-Day Revenue Impact: $-2700\n\n2. Bernard: $171 → $145 (-15%)\n   Type: flash sale\n   30-Day Revenue Impact: $-3120\n\n3. Mariana: $223 → $190 (-15%)\n   Type: flash sale\n   30-Day Revenue Impact: $-1980\n\n4. LaRua: $153 → $130 (-15%)\n   Type: flash sale\n   30-Day Revenue Impact: $-2070\n\n5. Pilar: $189 → $161 (-15%)\n   Type: flash sale\n   30-Day Revenue Impact: $-2100\n\n--- Total Impact ---\nTotal 30-Day Revenue Change: $-11970\n",
+        "data": {
+          "applied": [
+            {
+              "roomType": "Santiago",
+              "oldPrice": 178,
+              "newPrice": 160,
+              "percentage": -10,
+              "promotionType": "flash_sale",
+              "revenueImpact": -2700,
+              "status": "applied"
+            },
+            {
+              "roomType": "Bernard",
+              "oldPrice": 171,
+              "newPrice": 145,
+              "percentage": -15,
+              "promotionType": "flash_sale",
+              "revenueImpact": -3120,
+              "status": "applied"
+            },
+            {
+              "roomType": "Mariana",
+              "oldPrice": 223,
+              "newPrice": 190,
+              "percentage": -15,
+              "promotionType": "flash_sale",
+              "revenueImpact": -1980,
+              "status": "applied"
+            },
+            {
+              "roomType": "LaRua",
+              "oldPrice": 153,
+              "newPrice": 130,
+              "percentage": -15,
+              "promotionType": "flash_sale",
+              "revenueImpact": -2070,
+              "status": "applied"
+            },
+            {
+              "roomType": "Pilar",
+              "oldPrice": 189,
+              "newPrice": 161,
+              "percentage": -15,
+              "promotionType": "flash_sale",
+              "revenueImpact": -2100,
+              "status": "applied"
+            }
+          ],
+          "errors": [],
+          "totalRevenueImpact": -11970,
+          "appliedCount": 5,
+          "errorCount": 0
+        },
+        "actionName": "applyMultiplePromotions",
+        "parameters": {
+          "promotions": [
+            {
+              "roomType": "Santiago",
+              "currentPrice": 178,
+              "newPrice": 160,
+              "percentage": -10,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "Bernard",
+              "currentPrice": 171,
+              "newPrice": 145,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "Mariana",
+              "currentPrice": 223,
+              "newPrice": 190,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "LaRua",
+              "currentPrice": 153,
+              "newPrice": 130,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            },
+            {
+              "roomType": "Pilar",
+              "currentPrice": 189,
+              "newPrice": 161,
+              "percentage": -15,
+              "promotionType": "flash_sale"
+            }
+          ],
+          "applyAll": true
+        },
+        "timestamp": "2025-12-23T23:28:49.022Z"
+      }
+    ],
+    "isTemporary": false
+  },
+  {
+    "time": "2025-12-24T00:56:34.291Z",
+    "operator": "dhanaparupudi1@gmail.com",
+    "operatorName": "User",
+    "prompt": "User approved action",
+    "intent": "applyTemporaryPricing",
+    "approvals": [
+      {
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "LaRua",
+              "currentPrice": 153,
+              "newPrice": 190
+            }
+          ],
+          "startDate": "2025-12-24T00:56:25.528Z",
+          "endDate": "2025-12-24T04:56:25.528Z",
+          "reason": "4 hours surge pricing"
+        },
+        "approved": true,
+        "timestamp": "2025-12-24T00:56:34.291Z"
+      }
+    ],
+    "applied": [
+      {
+        "success": true,
+        "message": "Done. LaRua is now $190 for the next 1 hour. The system will automatically revert it to $153 after that. You can see the updated price on the dashboard right now. Keep an eye on bookings during this period.",
+        "data": {
+          "tempOfferId": "temp_1766537794264",
+          "appliedOverrides": 1,
+          "revertDate": "2025-12-24T04:56:25.528Z",
+          "roomPricing": [
+            {
+              "roomType": "LaRua",
+              "currentPrice": 153,
+              "newPrice": 190
+            }
+          ]
+        },
+        "actionName": "applyTemporaryPricing",
+        "parameters": {
+          "roomPricing": [
+            {
+              "roomType": "LaRua",
+              "currentPrice": 153,
+              "newPrice": 190
+            }
+          ],
+          "startDate": "2025-12-24T00:56:25.528Z",
+          "endDate": "2025-12-24T04:56:25.528Z",
+          "reason": "4 hours surge pricing"
+        },
+        "timestamp": "2025-12-24T00:56:34.291Z"
+      }
+    ],
+    "isTemporary": true
+  }
+]

@@ -1,0 +1,16 @@
+competitor_name,room_type,avg_price,weight,differential
+Hilton Pensacola Beach,Bernard,180,40,-5
+Hilton Pensacola Beach,LaRua,165,40,-5
+Hilton Pensacola Beach,Santiago,180,40,-5
+Hilton Pensacola Beach,Pilar,195,40,-5
+Hilton Pensacola Beach,Mariana,230,40,-5
+Margaritaville Beach Hotel,Bernard,170,30,0
+Margaritaville Beach Hotel,LaRua,155,30,0
+Margaritaville Beach Hotel,Santiago,170,30,0
+Margaritaville Beach Hotel,Pilar,185,30,0
+Margaritaville Beach Hotel,Mariana,220,30,0
+Hampton Inn Pensacola,Bernard,175,30,5
+Hampton Inn Pensacola,LaRua,160,30,5
+Hampton Inn Pensacola,Santiago,175,30,5
+Hampton Inn Pensacola,Pilar,190,30,5
+Hampton Inn Pensacola,Mariana,225,30,5

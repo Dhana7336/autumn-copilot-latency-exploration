@@ -1,0 +1,52 @@
+{
+  "pricingRules": {
+    "basePrice": 150,
+    "rateFloor": 140,
+    "rateCeiling": 220,
+
+    "competitorAdjustment": {
+      "description": "Adjust based on competitor pricing relative to our base",
+      "rules": [
+        { "condition": "competitors 10%+ higher", "adjustment": "+5%" },
+        { "condition": "competitors 10%+ lower", "adjustment": "-5%" },
+        { "condition": "competitors within 10%", "adjustment": "0%" }
+      ]
+    },
+
+    "occupancyAdjustment": {
+      "description": "Adjust based on current/forecasted occupancy",
+      "rules": [
+        { "occupancyRange": "< 40%", "adjustment": "-10% to -15%", "reason": "Stimulate demand" },
+        { "occupancyRange": "40% - 70%", "adjustment": "0%", "reason": "Keep near base price" },
+        { "occupancyRange": "> 70%", "adjustment": "+10% to +20%", "reason": "Scarcity pricing" }
+      ]
+    },
+
+    "formula": "final_price = base_price * competitor_adjustment * occupancy_adjustment",
+
+    "example": {
+      "basePrice": 150,
+      "competitorAvg": "10% higher",
+      "competitorAdjustment": 1.05,
+      "resultAfterCompetitor": 157.50,
+      "occupancy": "80%",
+      "occupancyAdjustment": 1.15,
+      "finalPrice": 181
+    }
+  },
+
+  "competitors": {
+    "HiltonPensacolaBeach": { "weight": 0.40, "differential": -0.05 },
+    "MargaritavilleBeachHotel": { "weight": 0.30, "differential": 0 },
+    "HamptonInnPensacola": { "weight": 0.30, "differential": 0.05 }
+  },
+
+  "currentMetrics": {
+    "nextWeekendOccupancy": 82,
+    "thisWeekAvgOccupancy": 64,
+    "underperformingDays": ["Tuesday", "Wednesday"],
+    "currentSuggestedPrice": 160,
+    "yesterdayPrice": 145,
+    "avgCompetitorPrice": 175
+  }
+}

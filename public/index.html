@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Copilot UI</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>AI Pricing Copilot (UI)</h1>
+      <div class="controls">
+        <input id="prompt" placeholder="Enter instruction (e.g. prices look low next weekend)" />
+        <button id="suggestBtn">Get Suggestions</button>
+      </div>
+
+      <div id="suggestions"></div>
+      <button id="applyBtn" disabled>Apply Approved Changes</button>
+      <div id="status"></div>
+    </div>
+    <script src="/ui.js"></script>
+  </body>
+</html>

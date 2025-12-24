@@ -1,0 +1,46 @@
+[
+  {
+    "id": "r101",
+    "name": "Standard Room",
+    "currentPrice": 143.99,
+    "occupancy": 0.72,
+    "competitorPrices": [
+      115,
+      125,
+      130
+    ]
+  },
+  {
+    "id": "r102",
+    "name": "Deluxe Room",
+    "currentPrice": 248.94,
+    "occupancy": 0.88,
+    "competitorPrices": [
+      170,
+      175,
+      190
+    ]
+  },
+  {
+    "id": "r201",
+    "name": "Suite",
+    "currentPrice": 354.64,
+    "occupancy": 0.45,
+    "competitorPrices": [
+      300,
+      340,
+      330
+    ]
+  },
+  {
+    "id": "r202",
+    "name": "Economy",
+    "currentPrice": 70.86,
+    "occupancy": 0.35,
+    "competitorPrices": [
+      60,
+      70,
+      80
+    ]
+  }
+]
